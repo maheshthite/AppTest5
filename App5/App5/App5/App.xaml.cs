@@ -8,6 +8,8 @@ namespace App5
     {
         public App()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mzk1Mjg1QDMxMzgyZTM0MmUzMFJ3UkhlcmZyaktsRjc3RVRKSlpjKyttTklOYkN6dHppZkpVVFM3YitRYXc9");
+
             InitializeComponent();
 
             MainPage = new MainPage();

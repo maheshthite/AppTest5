@@ -11,6 +11,50 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\bkg1.png" />
+    <None Remove="Images\black2.png" />
+    <None Remove="Images\blue2.png" />
+    <None Remove="Images\cancel2.png" />
+    <None Remove="Images\celebrateW.png" />
+    <None Remove="Images\Erase_All_History1.png" />
+    <None Remove="Images\green2.png" />
+    <None Remove="Images\hbar.png" />
+    <None Remove="Images\musicW.png" />
+    <None Remove="Images\next2.png" />
+    <None Remove="Images\ok2.png" />
+    <None Remove="Images\prev2.png" />
+    <None Remove="Images\purple2.png" />
+    <None Remove="Images\red2.png" />
+    <None Remove="Images\runningW.png" />
+    <None Remove="Images\settings2.png" />
+    <None Remove="Images\studyW.png" />
+    <None Remove="Images\TrashCan.png" />
+    <None Remove="Images\yogaW.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\bkg1.png" />
+    <EmbeddedResource Include="Images\black2.png" />
+    <EmbeddedResource Include="Images\blue2.png" />
+    <EmbeddedResource Include="Images\cancel2.png" />
+    <EmbeddedResource Include="Images\celebrateW.png" />
+    <EmbeddedResource Include="Images\Erase_All_History1.png" />
+    <EmbeddedResource Include="Images\green2.png" />
+    <EmbeddedResource Include="Images\hbar.png" />
+    <EmbeddedResource Include="Images\musicW.png" />
+    <EmbeddedResource Include="Images\next2.png" />
+    <EmbeddedResource Include="Images\ok2.png" />
+    <EmbeddedResource Include="Images\prev2.png" />
+    <EmbeddedResource Include="Images\purple2.png" />
+    <EmbeddedResource Include="Images\red2.png" />
+    <EmbeddedResource Include="Images\runningW.png" />
+    <EmbeddedResource Include="Images\settings2.png" />
+    <EmbeddedResource Include="Images\studyW.png" />
+    <EmbeddedResource Include="Images\TrashCan.png" />
+    <EmbeddedResource Include="Images\yogaW.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="18.4.0.46" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />

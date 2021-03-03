@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"   
+                         xmlns:local="clr-namespace:App5;assembly=App5" 
+             x:Class="App5.ThoughtsView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <local:Dark x:Key="dark" />
+            <local:HistTheme x:Key="HistTheme" />
+        </ResourceDictionary>
+
+    </ContentView.Resources>
+    <StackLayout >
+        <Grid Margin="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".4*" />
+                <RowDefinition Height=".1*" />                
+                <RowDefinition Height=".12*" />
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" >
+                <syncfusion:SfDataGrid   x:Name="dgTopicsLists" GridStyle="{StaticResource Key=dark}"
+                        AutoGenerateColumns="False" 
+                                        HeaderRowHeight="0"
+                                       SelectionMode="Single"  
+                                        NavigationMode="Cell"      
+                                        HorizontalOptions="Fill"  ScrollingMode="PixelLine" >
+                    <syncfusion:SfDataGrid.Columns>
+						<syncfusion:GridTextColumn HeaderText="Topic"  MappingName="TopicName"  ColumnSizer="LastColumnFill"  />
+						<syncfusion:GridImageColumn HeaderText="XXX"  MappingName="TrashImg" Width="30" ColumnSizer="Auto" />
+                    </syncfusion:SfDataGrid.Columns>
+                </syncfusion:SfDataGrid>
+            </Grid>
+            <Grid Grid.Row="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image x:Name="hbartop" Grid.Column="0" Source="hbar.png" />
+            </Grid>
+            <Grid Grid.Row="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".1*" />
+                    <ColumnDefinition Width=".3*"  />
+                    <ColumnDefinition Width=".1*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" x:Name="btnClearText"  Text="New"  Clicked="BtnClearText_Clicked" TextColor="#FFFFFF" BackgroundColor="#407DEC"  Margin="2"/>
+                <Entry  Grid.Column="1"  x:Name="txtTopic" MaxLength="100" Placeholder="New Title"  Margin="2" ></Entry>
+                <Button Grid.Column="2" x:Name="btnAddTopicLists"  Text="Save"  Clicked="BtnAddTopic_Clicked" TextColor="#FFFFFF" BackgroundColor="#407DEC"  Margin="2"/>
+            </Grid>            
+            <Grid Grid.Row="3" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"  />
+                </Grid.ColumnDefinitions>
+                <Editor Grid.Column="0" x:Name="txtEssay"  TextChanged="EditorTextChanged" AutoSize="TextChanges" Placeholder="your thoughts..." Margin="2"/>
+            </Grid>
+
+        </Grid>
+    </StackLayout>
+
+</ContentView>
