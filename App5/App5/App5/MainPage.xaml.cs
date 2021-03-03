@@ -198,6 +198,12 @@ namespace App5
         private void SpeechToTextFinalResultRecieved(string args)
         {
             recon.Text = args;
+            if (m_CurrentTopicType == TopicType.List)
+                MyLists.AddTopicItemSpeechtoText(recon.Text);
+            else if (m_CurrentTopicType == TopicType.Quotes)
+                MyQuotes.AddTopicItemSpeechtoText(recon.Text);
+            else if (m_CurrentTopicType == TopicType.Thoughts)
+                MyThoughts.AddTopicItemSpeechtoText(recon.Text);
         }
         private void Start_Clicked(object sender, EventArgs e)
         {

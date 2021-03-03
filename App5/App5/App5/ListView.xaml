@@ -27,8 +27,8 @@
                     <ColumnDefinition Width=".3*"  />
                     <ColumnDefinition Width=".1*" />
                 </Grid.ColumnDefinitions>
-                <Entry  Grid.Column="0"  x:Name="txtTopic" MaxLength="100" Placeholder="New Topic"  Margin="2" ></Entry>
-                <Button Grid.Column="1" x:Name="btnAddTopicLists"  Text="Add New Topic"  Clicked="BtnAddTopic_Clicked" TextColor="#FFFFFF" BackgroundColor="#407DEC"  Margin="2"/>
+                <Entry  Grid.Column="0"  x:Name="txtTopic" FontSize="20"  MaxLength="100" Placeholder="New Topic"  Margin="2" ></Entry>
+                <Button Grid.Column="1" x:Name="btnAddTopicLists"  Text="New Topic"  Clicked="BtnAddTopic_Clicked" TextColor="#FFFFFF" BackgroundColor="#407DEC"  Margin="2"/>
             </Grid>
             <Grid Grid.Row="1" >
                 <syncfusion:SfDataGrid   x:Name="dgTopicsLists" GridStyle="{StaticResource dark}"
@@ -56,7 +56,7 @@
                     <ColumnDefinition Width=".1*" />
                 </Grid.ColumnDefinitions>
                 <Editor Grid.Column="0" x:Name="txtEssay" Placeholder="Plan to:\nWalking\nYoga" Margin="2" IsVisible="False" />
-                <Entry  Grid.Column="0"  x:Name="txtItem" MaxLength="144" Placeholder="Add to list..."  Margin="2"  ></Entry>
+                <Entry  Grid.Column="0"  x:Name="txtItem" FontSize="20" MaxLength="144" Placeholder="Add to list..."  Margin="2"  ></Entry>
                 <Button Grid.Column="1" x:Name="btnAddLists"  Text="Add"  Clicked="BtnAdd_Clicked" TextColor="#FFFFFF" BackgroundColor="#407DEC" Margin="2"/>
             </Grid>
             <Grid Grid.Row="4" >

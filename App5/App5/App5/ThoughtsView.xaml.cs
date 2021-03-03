@@ -174,6 +174,31 @@ namespace App5
             dgTopicsLists.SelectedIndex = rowindex;
             bflagtextchanged = false;
         }
+        public void AddTopicItemSpeechtoText(string strItem)
+        {
+            // if topic not set , create a unique one
+            if (m_CurrentTopic == null)
+            {
+                string strTopic = DateTime.Now.ToString("List_yyyyMMddhhmmssfff");
+                Topic newtopic = new Topic(m_CurrentTopicType, strTopic);
+                m_ListEngine.SaveTopic(newtopic);
+                Item newItem = new Item(m_CurrentTopic, txtEssay.Text);
+                m_ListEngine.SaveThoughtItem(newItem);
+                var rowindex = dgTopicsLists.ResolveToRowIndex(newtopic);
+                //Make the row in to available on the view. 
+                dgTopicsLists.ScrollToRowIndex(rowindex);
+                //to set the found row as current row 
+                dgTopicsLists.View.MoveCurrentTo(newtopic);
+                dgTopicsLists.SelectedIndex = rowindex;
+                m_CurrentTopic = newtopic;
+            }
+            else
+            {
+                Item newItem = new Item(m_CurrentTopic, strItem);
+                m_ListEngine.SaveItem(newItem);
+            }
+
+        }
         public void EditorTextChanged(object sender, TextChangedEventArgs e)
         {
             bflagtextchanged = true;

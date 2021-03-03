@@ -118,6 +118,26 @@ namespace App5
             dgTopicsLists.View.MoveCurrentTo(newtopic);
             dgTopicsLists.SelectedIndex = rowindex;
         }
+        public void AddTopicItemSpeechtoText(string strItem)
+        {
+            // if topic not set , create a unique one
+            if (m_CurrentTopic == null)
+            {
+                string strTopic = DateTime.Now.ToString("Quotes_yyyyMMddhhmmssfff");
+                Topic newtopic = new Topic(m_CurrentTopicType, strTopic);
+                m_ListEngine.SaveTopic(newtopic);
+                var rowindex = dgTopicsLists.ResolveToRowIndex(newtopic);
+                //Make the row in to available on the view. 
+                dgTopicsLists.ScrollToRowIndex(rowindex);
+                //to set the found row as current row 
+                dgTopicsLists.View.MoveCurrentTo(newtopic);
+                dgTopicsLists.SelectedIndex = rowindex;
+                m_CurrentTopic = newtopic;
+            }
+            Item newItem = new Item(m_CurrentTopic, strItem);
+            m_ListEngine.SaveItem(newItem);
+
+        }
         public  void RefreshData()
         {
         }
