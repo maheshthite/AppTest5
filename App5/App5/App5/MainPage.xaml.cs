@@ -151,18 +151,18 @@ namespace App5
         {
             InitializeComponent();
             m_CurrentTopicType = TopicType.List;
-            BackgroundImageSource = ImageSource.FromResource("App1.Images.bkg1.png");
+            BackgroundImageSource = ImageSource.FromResource("App5.Images.bkg1.png");
             //hbartop.Source = ImageSource.FromResource("App1.Images.hbar.png");
             //hbarbottom.Source = ImageSource.FromResource("App1.Images.hbar.png");
 
-            prev.Source = ImageSource.FromResource("App1.Images.prev2.png");
-            next.Source = ImageSource.FromResource("App1.Images.next2.png");
+            prev.Source = ImageSource.FromResource("App5.Images.prev2.png");
+            next.Source = ImageSource.FromResource("App5.Images.next2.png");
 
-            yogaW.Source = ImageSource.FromResource("App1.Images.yogaW.png");
-            studyW.Source = ImageSource.FromResource("App1.Images.studyW.png");
-            runningW.Source = ImageSource.FromResource("App1.Images.runningW.png");
-            musicW.Source = ImageSource.FromResource("App1.Images.musicW.png");
-            celebrateW.Source = ImageSource.FromResource("App1.Images.celebrateW.png");
+            yogaW.Source = ImageSource.FromResource("App5.Images.yogaW.png");
+            studyW.Source = ImageSource.FromResource("App5.Images.studyW.png");
+            runningW.Source = ImageSource.FromResource("App5.Images.runningW.png");
+            musicW.Source = ImageSource.FromResource("App5.Images.musicW.png");
+            celebrateW.Source = ImageSource.FromResource("App5.Images.celebrateW.png");
         }
         private void Start_Clicked(object sender, EventArgs e)
         {
