@@ -29,8 +29,14 @@ namespace App5.db
                 //return Path.Combine(basePath, DatabaseFilename);
                 //string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
                 //return Path.Combine(documentsPath, "..", "Library"); // Library folder instead
-                var basePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                return Path.Combine(basePath, DatabaseFilename);
+                
+                //var basePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                //return Path.Combine(basePath, DatabaseFilename);
+
+                var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                var library = Path.Combine(documents, "..", "Library");
+                return Path.Combine(library, DatabaseFilename);
+
             }
         }
     }
