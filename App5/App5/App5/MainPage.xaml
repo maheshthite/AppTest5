@@ -1,24 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"    
+            xmlns:local="clr-namespace:App5;assembly=App5"              
+            xmlns:views="clr-namespace:App5;assembly=App5"                  
              x:Class="App5.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:Dark x:Key="dark" />
+            <local:HistTheme x:Key="HistTheme" />
+        </ResourceDictionary>
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+    </ContentPage.Resources>
+    <StackLayout Margin="2">
+        <Grid Margin="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".08*" />
+                <RowDefinition Height=".08*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height=".28*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".4*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width=".4*" />
+                </Grid.ColumnDefinitions>
+                <ImageButton  x:Name="prev" Grid.Column="0"  Source="prev2.png" Clicked="BtnPrevTopictype_Clicked"  />
+                <Label  x:Name="lblTopicType" Grid.Column="1" Text="Lists" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="#407DEC" TextColor="#FFFFFF"  />
+                <ImageButton  x:Name="next" Grid.Column="2"  Clicked="BtnNextTopictype_Clicked"   />
+            </Grid>
+            <Grid Grid.Row="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".2*" />
+                    <ColumnDefinition Width=".2*" />
+                    <ColumnDefinition Width=".2*" />
+                    <ColumnDefinition Width=".2*" />
+                    <ColumnDefinition Width=".2*" />
+                </Grid.ColumnDefinitions>
+                <Image x:Name="yogaW" Grid.Column="0" Source="yogaW.png" />
+                <Image x:Name="studyW" Grid.Column="1" Source="studyW.png" />
+                <Image x:Name="runningW" Grid.Column="2" Source="runningW.png" />
+                <Image x:Name="musicW" Grid.Column="3" Source="musicW.png" />
+                <Image x:Name="celebrateW" Grid.Column="4" Source="celebrateW.png" />
+            </Grid>
+            <Grid Grid.Row="2" >
+                <views:ListView x:Name="MyLists" IsVisible="true"/>
+                <views:QuoteView x:Name="MyQuotes" IsVisible="false"/>
+                <views:ThoughtsView x:Name="MyThoughts" IsVisible="false"/>
+            </Grid>
+            <Grid Grid.Row="3" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout >
+                    <Button x:Name="start" Text="Start" Clicked="Start_Clicked"/>
+                    <Label  x:Name="recon" Text="Recognized text"  HorizontalOptions="Center" VerticalOptions="Center" />
+                </StackLayout>
+            </Grid>
+
+        </Grid>
     </StackLayout>
-
 </ContentPage>

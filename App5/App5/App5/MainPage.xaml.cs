@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using App5.db;
 
 namespace App5
 {
@@ -143,9 +144,110 @@ namespace App5
     }
     public partial class MainPage : ContentPage
     {
+        public bool bDeleteFlag = false;
+        public bool bReOrderFlag = false;
+        public string m_CurrentTopicType;
         public MainPage()
         {
             InitializeComponent();
+            m_CurrentTopicType = TopicType.List;
+            BackgroundImageSource = ImageSource.FromResource("App1.Images.bkg1.png");
+            //hbartop.Source = ImageSource.FromResource("App1.Images.hbar.png");
+            //hbarbottom.Source = ImageSource.FromResource("App1.Images.hbar.png");
+
+            prev.Source = ImageSource.FromResource("App1.Images.prev2.png");
+            next.Source = ImageSource.FromResource("App1.Images.next2.png");
+
+            yogaW.Source = ImageSource.FromResource("App1.Images.yogaW.png");
+            studyW.Source = ImageSource.FromResource("App1.Images.studyW.png");
+            runningW.Source = ImageSource.FromResource("App1.Images.runningW.png");
+            musicW.Source = ImageSource.FromResource("App1.Images.musicW.png");
+            celebrateW.Source = ImageSource.FromResource("App1.Images.celebrateW.png");
+        }
+        private void Start_Clicked(object sender, EventArgs e)
+        {
+
+        }
+        private void BtnPrevTopictype_Clicked(object sender, EventArgs e)
+        {
+            m_CurrentTopicType = TopicType.GetPrev(m_CurrentTopicType);
+            lblTopicType.Text = m_CurrentTopicType;
+            //m_ListEngine.GetTopicList(m_CurrentTopicType);
+            if (m_CurrentTopicType == TopicType.List)
+            {
+                MyLists.IsVisible = true;
+                MyQuotes.IsVisible = false;
+                MyThoughts.IsVisible = false;
+
+            }
+            else if (m_CurrentTopicType == TopicType.Quotes)
+            {
+                MyLists.IsVisible = false;
+                (MyQuotes as QuoteView)?.PageAppearing();
+                MyQuotes.IsVisible = true;
+                MyThoughts.IsVisible = false;
+            }
+            else if (m_CurrentTopicType == TopicType.Thoughts)
+            {
+                MyLists.IsVisible = false;
+                MyQuotes.IsVisible = false;
+                (MyThoughts as ThoughtsView)?.PageAppearing();
+                MyThoughts.IsVisible = true;
+            }
+            else
+            {
+                MyLists.IsVisible = true;
+                MyQuotes.IsVisible = false;
+                MyThoughts.IsVisible = false;
+            }
+        }
+        private void BtnNextTopictype_Clicked(object sender, EventArgs e)
+        {
+            m_CurrentTopicType = TopicType.GetNext(m_CurrentTopicType);
+            lblTopicType.Text = m_CurrentTopicType;
+            //m_ListEngine.GetTopicList(m_CurrentTopicType);
+            if (m_CurrentTopicType == TopicType.List)
+            {
+                MyLists.IsVisible = true;
+                MyQuotes.IsVisible = false;
+                MyThoughts.IsVisible = false;
+            }
+            else if (m_CurrentTopicType == TopicType.Quotes)
+            {
+                MyLists.IsVisible = false;
+                (MyQuotes as QuoteView)?.PageAppearing();
+                MyQuotes.IsVisible = true;
+                MyThoughts.IsVisible = false;
+            }
+            else if (m_CurrentTopicType == TopicType.Thoughts)
+            {
+                MyLists.IsVisible = false;
+                MyQuotes.IsVisible = false;
+                (MyThoughts as ThoughtsView)?.PageAppearing();
+                MyThoughts.IsVisible = true;
+            }
+            else
+            {
+                MyLists.IsVisible = true;
+                MyQuotes.IsVisible = false;
+                MyThoughts.IsVisible = false;
+            }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            // (MyThoughts as ThoughtsView)?.PageAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            //       (MyThoughts as ThoughtsView?.PageDisappearing();
+        }
+
+        public void RefreshData()
+        {
         }
     }
 }
