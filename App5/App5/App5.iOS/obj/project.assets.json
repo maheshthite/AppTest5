@@ -2,6 +2,91 @@
   "version": 3,
   "targets": {
     "Xamarin.iOS,Version=v1.0": {
+      "Syncfusion.Licensing/18.4.0.46": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.iOS.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.GridCommon/18.4.0.46": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.GridCommon.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.GridCommon.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfComboBox/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Xamarin.Core": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.iOS.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfDataGrid/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Xamarin.Core": "18.4.0.46",
+          "Syncfusion.Xamarin.GridCommon": "18.4.0.46",
+          "Syncfusion.Xamarin.SfComboBox": "18.4.0.46",
+          "Syncfusion.Xamarin.SfNumericTextBox": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.Data.Portable.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.Data.Portable.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.iOS.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfNumericTextBox/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Xamarin.Core": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.iOS.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.iOS.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.iOS.dll": {}
+        }
+      },
       "Xamarin.Essentials/1.5.3.2": {
         "type": "package",
         "frameworkAssemblies": [
@@ -140,6 +225,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Syncfusion.Xamarin.SfDataGrid": "18.4.0.46",
           "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.8.0.1451"
         },
@@ -152,6 +238,91 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win": {
+      "Syncfusion.Licensing/18.4.0.46": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.iOS.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.GridCommon/18.4.0.46": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.GridCommon.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.GridCommon.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfComboBox/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Xamarin.Core": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.iOS.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfDataGrid/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Xamarin.Core": "18.4.0.46",
+          "Syncfusion.Xamarin.GridCommon": "18.4.0.46",
+          "Syncfusion.Xamarin.SfComboBox": "18.4.0.46",
+          "Syncfusion.Xamarin.SfNumericTextBox": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.Data.Portable.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.Data.Portable.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.iOS.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfNumericTextBox/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Xamarin.Core": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.iOS.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.iOS.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.iOS.dll": {}
+        }
+      },
       "Xamarin.Essentials/1.5.3.2": {
         "type": "package",
         "frameworkAssemblies": [
@@ -290,6 +461,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Syncfusion.Xamarin.SfDataGrid": "18.4.0.46",
           "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.8.0.1451"
         },
@@ -302,6 +474,91 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win-x64": {
+      "Syncfusion.Licensing/18.4.0.46": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.iOS.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.GridCommon/18.4.0.46": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.GridCommon.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.GridCommon.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfComboBox/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Xamarin.Core": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.iOS.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfDataGrid/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Xamarin.Core": "18.4.0.46",
+          "Syncfusion.Xamarin.GridCommon": "18.4.0.46",
+          "Syncfusion.Xamarin.SfComboBox": "18.4.0.46",
+          "Syncfusion.Xamarin.SfNumericTextBox": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.Data.Portable.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.Data.Portable.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.iOS.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfNumericTextBox/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Xamarin.Core": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.iOS.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.iOS.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.iOS.dll": {}
+        }
+      },
       "Xamarin.Essentials/1.5.3.2": {
         "type": "package",
         "frameworkAssemblies": [
@@ -440,6 +697,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Syncfusion.Xamarin.SfDataGrid": "18.4.0.46",
           "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.8.0.1451"
         },
@@ -452,6 +710,91 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win-x86": {
+      "Syncfusion.Licensing/18.4.0.46": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.Core.XForms.iOS.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.GridCommon/18.4.0.46": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.GridCommon.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.GridCommon.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfComboBox/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Xamarin.Core": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.iOS.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfDataGrid/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Xamarin.Core": "18.4.0.46",
+          "Syncfusion.Xamarin.GridCommon": "18.4.0.46",
+          "Syncfusion.Xamarin.SfComboBox": "18.4.0.46",
+          "Syncfusion.Xamarin.SfNumericTextBox": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.Data.Portable.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.Data.Portable.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.iOS.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfNumericTextBox/18.4.0.46": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Xamarin.Core": "18.4.0.46",
+          "Xamarin.Forms": "4.5.0.617"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.iOS.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.iOS.dll": {},
+          "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.iOS.dll": {}
+        }
+      },
       "Xamarin.Essentials/1.5.3.2": {
         "type": "package",
         "frameworkAssemblies": [
@@ -590,6 +933,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Syncfusion.Xamarin.SfDataGrid": "18.4.0.46",
           "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.8.0.1451"
         },
@@ -603,6 +947,213 @@
     }
   },
   "libraries": {
+    "Syncfusion.Licensing/18.4.0.46": {
+      "sha512": "f+H0ViiY3sX8c7b36CGTdEaxTc/vzs7NDX0ZaX1Q2WsTSUF1qfOLSw9L+AT1gKCCVFk6hdHKzC72G/wiUALJ5w==",
+      "type": "package",
+      "path": "syncfusion.licensing/18.4.0.46",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10.0/Syncfusion.Licensing.dll",
+        "lib/MonoAndroid90/Syncfusion.Licensing.dll",
+        "lib/Xamarin.Mac/Syncfusion.Licensing.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Licensing.dll",
+        "lib/net20/Syncfusion.Licensing.dll",
+        "lib/net35/Syncfusion.Licensing.dll",
+        "lib/net40/Syncfusion.Licensing.dll",
+        "lib/net45/Syncfusion.Licensing.dll",
+        "lib/net451/Syncfusion.Licensing.dll",
+        "lib/net46/Syncfusion.Licensing.dll",
+        "lib/netcoreapp3.1/Syncfusion.Licensing.dll",
+        "lib/netcoreapp5.0/Syncfusion.Licensing.dll",
+        "lib/netstandard1.0/Syncfusion.Licensing.dll",
+        "lib/netstandard1.2/Syncfusion.Licensing.dll",
+        "lib/netstandard1.4/Syncfusion.Licensing.dll",
+        "lib/netstandard2.0/Syncfusion.Licensing.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Licensing.dll",
+        "lib/uap10.0/Syncfusion.Licensing.dll",
+        "syncfusion.licensing.18.4.0.46.nupkg.sha512",
+        "syncfusion.licensing.nuspec"
+      ]
+    },
+    "Syncfusion.Xamarin.Core/18.4.0.46": {
+      "sha512": "dvYMZP4GDx0x7eTAcsSDfb0g1Ncst0tU8SwLUsgtidhx8Y8SIY/0EJWmI0yOXS6UZvFjNGbMFU8IigCL0Gon8A==",
+      "type": "package",
+      "path": "syncfusion.xamarin.core/18.4.0.46",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10.0/Syncfusion.Core.XForms.Android.dll",
+        "lib/MonoAndroid10.0/Syncfusion.Core.XForms.dll",
+        "lib/MonoAndroid10.0/Syncfusion.Core.XForms.xml",
+        "lib/MonoAndroid90/Syncfusion.Core.XForms.Android.dll",
+        "lib/MonoAndroid90/Syncfusion.Core.XForms.dll",
+        "lib/MonoAndroid90/Syncfusion.Core.XForms.xml",
+        "lib/Xamarin.Mac/Syncfusion.Core.XForms.dll",
+        "lib/Xamarin.Mac/Syncfusion.Core.XForms.macOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Core.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Core.XForms.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Core.XForms.xml",
+        "lib/netstandard2.0/Syncfusion.Core.XForms.dll",
+        "lib/netstandard2.0/Syncfusion.Core.XForms.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Core.XForms.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Core.XForms.xml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP.pri",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/Syncfusion.Core.XForms.UWP.xr.xml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/ClearButtonViewVisibleIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/DropDownIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/ToggleCollapsedIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/TILRenderer/ToggleIcons/ToggleVisibleIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.dll",
+        "lib/uap10.0/Syncfusion.Core.XForms.xml",
+        "syncfusion.xamarin.core.18.4.0.46.nupkg.sha512",
+        "syncfusion.xamarin.core.nuspec"
+      ]
+    },
+    "Syncfusion.Xamarin.GridCommon/18.4.0.46": {
+      "sha512": "rV861Mb0jWQEtQXHN5q3PAkx8abcldqFf9RDoNR+Enib0c/dxsINqsjQhjEsJwuRFxf49yu1ssV0R4XrOU9j6g==",
+      "type": "package",
+      "path": "syncfusion.xamarin.gridcommon/18.4.0.46",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10.0/Syncfusion.GridCommon.Portable.XML",
+        "lib/MonoAndroid10.0/Syncfusion.GridCommon.Portable.dll",
+        "lib/MonoAndroid90/Syncfusion.GridCommon.Portable.XML",
+        "lib/MonoAndroid90/Syncfusion.GridCommon.Portable.dll",
+        "lib/Xamarin.Mac/Syncfusion.GridCommon.Portable.XML",
+        "lib/Xamarin.Mac/Syncfusion.GridCommon.Portable.dll",
+        "lib/Xamarin.iOS10/Syncfusion.GridCommon.Portable.XML",
+        "lib/Xamarin.iOS10/Syncfusion.GridCommon.Portable.dll",
+        "lib/netstandard2.0/Syncfusion.GridCommon.Portable.XML",
+        "lib/netstandard2.0/Syncfusion.GridCommon.Portable.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.GridCommon.Portable.XML",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.GridCommon.Portable.dll",
+        "lib/uap10.0/Syncfusion.GridCommon.Portable.XML",
+        "lib/uap10.0/Syncfusion.GridCommon.Portable.dll",
+        "syncfusion.xamarin.gridcommon.18.4.0.46.nupkg.sha512",
+        "syncfusion.xamarin.gridcommon.nuspec"
+      ]
+    },
+    "Syncfusion.Xamarin.SfComboBox/18.4.0.46": {
+      "sha512": "wvheRAp6TXtJQm2uXuvNJUF0onKeM3ST9Yho/cbzlWsxEFJr+fLoRET+uGRYvQwkkgiWcId1KQZ/Wp/l+sH0CA==",
+      "type": "package",
+      "path": "syncfusion.xamarin.sfcombobox/18.4.0.46",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10.0/Syncfusion.SfComboBox.XForms.Android.dll",
+        "lib/MonoAndroid10.0/Syncfusion.SfComboBox.XForms.XML",
+        "lib/MonoAndroid10.0/Syncfusion.SfComboBox.XForms.dll",
+        "lib/MonoAndroid90/Syncfusion.SfComboBox.XForms.Android.dll",
+        "lib/MonoAndroid90/Syncfusion.SfComboBox.XForms.XML",
+        "lib/MonoAndroid90/Syncfusion.SfComboBox.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.XML",
+        "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfComboBox.XForms.iOS.dll",
+        "lib/netstandard2.0/Syncfusion.SfComboBox.XForms.XML",
+        "lib/netstandard2.0/Syncfusion.SfComboBox.XForms.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.SfComboBox.XForms.XML",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.SfComboBox.XForms.dll",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP.XML",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP.pri",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP/Properties/Syncfusion.SfComboBox.XForms.UWP.rd.xml",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP/Syncfusion.SfComboBox.XForms.UWP.xr.xml",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP/Themes/Generic.xaml",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP/darkthemeimage.png",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.UWP/dropdownbuttonimage.png",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.XML",
+        "lib/uap10.0/Syncfusion.SfComboBox.XForms.dll",
+        "syncfusion.xamarin.sfcombobox.18.4.0.46.nupkg.sha512",
+        "syncfusion.xamarin.sfcombobox.nuspec"
+      ]
+    },
+    "Syncfusion.Xamarin.SfDataGrid/18.4.0.46": {
+      "sha512": "xyZBKCSLh1ieD7qc8SOtvNPT5CfDNpKv9TBvTKupyVbw4ryzReb4JmFxt+U/7wOxC5X5ECd+Zieh+wZ/bEdn4g==",
+      "type": "package",
+      "path": "syncfusion.xamarin.sfdatagrid/18.4.0.46",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10.0/Syncfusion.Data.Portable.dll",
+        "lib/MonoAndroid10.0/Syncfusion.Data.Portable.xml",
+        "lib/MonoAndroid10.0/Syncfusion.SfDataGrid.XForms.Android.dll",
+        "lib/MonoAndroid10.0/Syncfusion.SfDataGrid.XForms.dll",
+        "lib/MonoAndroid10.0/Syncfusion.SfDataGrid.XForms.xml",
+        "lib/MonoAndroid90/Syncfusion.Data.Portable.dll",
+        "lib/MonoAndroid90/Syncfusion.Data.Portable.xml",
+        "lib/MonoAndroid90/Syncfusion.SfDataGrid.XForms.Android.dll",
+        "lib/MonoAndroid90/Syncfusion.SfDataGrid.XForms.dll",
+        "lib/MonoAndroid90/Syncfusion.SfDataGrid.XForms.xml",
+        "lib/Xamarin.Mac/Syncfusion.Data.Portable.dll",
+        "lib/Xamarin.Mac/Syncfusion.Data.Portable.xml",
+        "lib/Xamarin.Mac/Syncfusion.SfDataGrid.XForms.dll",
+        "lib/Xamarin.Mac/Syncfusion.SfDataGrid.XForms.macOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Data.Portable.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Data.Portable.xml",
+        "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfDataGrid.XForms.xml",
+        "lib/netstandard2.0/Syncfusion.Data.Portable.dll",
+        "lib/netstandard2.0/Syncfusion.Data.Portable.xml",
+        "lib/netstandard2.0/Syncfusion.SfDataGrid.XForms.dll",
+        "lib/netstandard2.0/Syncfusion.SfDataGrid.XForms.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Data.Portable.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Data.Portable.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.SfDataGrid.XForms.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.SfDataGrid.XForms.xml",
+        "lib/uap10.0/Syncfusion.Data.Portable.dll",
+        "lib/uap10.0/Syncfusion.Data.Portable.xml",
+        "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.XML",
+        "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP.pri",
+        "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP/Assets/DataGridFontIcon.ttf",
+        "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP/Assets/DataPagerFontIcon.ttf",
+        "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP/Properties/Syncfusion.SfDataGrid.XForms.UWP.rd.xml",
+        "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP/Syncfusion.SfDataGrid.XForms.UWP.xr.xml",
+        "lib/uap10.0/Syncfusion.SfDataGrid.XForms.UWP/Themes/Generic.xbf",
+        "lib/uap10.0/Syncfusion.SfDataGrid.XForms.dll",
+        "lib/uap10.0/Syncfusion.SfDataGrid.XForms.xml",
+        "syncfusion.xamarin.sfdatagrid.18.4.0.46.nupkg.sha512",
+        "syncfusion.xamarin.sfdatagrid.nuspec"
+      ]
+    },
+    "Syncfusion.Xamarin.SfNumericTextBox/18.4.0.46": {
+      "sha512": "FmU2NM4oDDBFcXFlqL8olqrd2L5sdG095gYmvBgVjygfmndHNBaTPTuVNNKgCOnhkr5hDvybzTHovGYRXhfp/w==",
+      "type": "package",
+      "path": "syncfusion.xamarin.sfnumerictextbox/18.4.0.46",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10.0/Syncfusion.SfNumericTextBox.Android.dll",
+        "lib/MonoAndroid10.0/Syncfusion.SfNumericTextBox.Android.xml",
+        "lib/MonoAndroid10.0/Syncfusion.SfNumericTextBox.XForms.Android.dll",
+        "lib/MonoAndroid10.0/Syncfusion.SfNumericTextBox.XForms.dll",
+        "lib/MonoAndroid10.0/Syncfusion.SfNumericTextBox.XForms.xml",
+        "lib/MonoAndroid90/Syncfusion.SfNumericTextBox.Android.dll",
+        "lib/MonoAndroid90/Syncfusion.SfNumericTextBox.Android.xml",
+        "lib/MonoAndroid90/Syncfusion.SfNumericTextBox.XForms.Android.dll",
+        "lib/MonoAndroid90/Syncfusion.SfNumericTextBox.XForms.dll",
+        "lib/MonoAndroid90/Syncfusion.SfNumericTextBox.XForms.xml",
+        "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.XForms.xml",
+        "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.iOS.XML",
+        "lib/Xamarin.iOS10/Syncfusion.SfNumericTextBox.iOS.dll",
+        "lib/netstandard2.0/Syncfusion.SfNumericTextBox.XForms.dll",
+        "lib/netstandard2.0/Syncfusion.SfNumericTextBox.XForms.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.SfNumericTextBox.XForms.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.SfNumericTextBox.XForms.xml",
+        "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.XML",
+        "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.dll",
+        "lib/uap10.0/Syncfusion.SfNumericTextBox.XForms.xml",
+        "syncfusion.xamarin.sfnumerictextbox.18.4.0.46.nupkg.sha512",
+        "syncfusion.xamarin.sfnumerictextbox.nuspec"
+      ]
+    },
     "Xamarin.Essentials/1.5.3.2": {
       "sha512": "BSLgDJUOPFRwTpQaftM+s4qb/MsTjrqXulEYDOcK6KF3i0Orf75zo3RwRfqnQ8WfpoEFxW/v0jgcPWCvOMgHxg==",
       "type": "package",
@@ -976,6 +1527,7 @@
   "projectFileDependencyGroups": {
     "Xamarin.iOS,Version=v1.0": [
       "App5 >= 1.0.0",
+      "Syncfusion.Xamarin.SfDataGrid >= 18.4.0.46",
       "Xamarin.Essentials >= 1.5.3.2",
       "Xamarin.Forms >= 4.8.0.1451"
     ]
@@ -1022,6 +1574,10 @@
     "frameworks": {
       "xamarinios10": {
         "dependencies": {
+          "Syncfusion.Xamarin.SfDataGrid": {
+            "target": "Package",
+            "version": "[18.4.0.46, )"
+          },
           "Xamarin.Essentials": {
             "target": "Package",
             "version": "[1.5.3.2, )"

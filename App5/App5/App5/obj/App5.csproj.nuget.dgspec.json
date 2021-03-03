@@ -51,6 +51,10 @@
               "version": "[2.0.3, )",
               "autoReferenced": true
             },
+            "Syncfusion.Xamarin.SfDataGrid": {
+              "target": "Package",
+              "version": "[18.4.0.46, )"
+            },
             "Xamarin.Essentials": {
               "target": "Package",
               "version": "[1.5.3.2, )"

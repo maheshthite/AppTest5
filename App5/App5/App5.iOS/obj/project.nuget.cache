@@ -1,9 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "zwPdIXGshTwtC/nEQbUDQgg9ysuh2BMNnohRvAhGnHxl27aPEHk3TCyciF9VOjTvfJQr1WibMC+WvQ82SSjE5Q==",
+  "dgSpecHash": "uxxTZK5pwu8RLLrnl9NN2I8YtBY5lJBWsK14wBleIUyptrvzBu8y/yDIcrLFrsnFaIzP3dp8FpND8hEVH4rMHQ==",
   "success": true,
   "projectFilePath": "C:\\XAM\\App5\\App5\\App5.iOS\\App5.iOS.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Mahesh\\.nuget\\packages\\syncfusion.licensing\\18.4.0.46\\syncfusion.licensing.18.4.0.46.nupkg.sha512",
+    "C:\\Users\\Mahesh\\.nuget\\packages\\syncfusion.xamarin.core\\18.4.0.46\\syncfusion.xamarin.core.18.4.0.46.nupkg.sha512",
+    "C:\\Users\\Mahesh\\.nuget\\packages\\syncfusion.xamarin.gridcommon\\18.4.0.46\\syncfusion.xamarin.gridcommon.18.4.0.46.nupkg.sha512",
+    "C:\\Users\\Mahesh\\.nuget\\packages\\syncfusion.xamarin.sfcombobox\\18.4.0.46\\syncfusion.xamarin.sfcombobox.18.4.0.46.nupkg.sha512",
+    "C:\\Users\\Mahesh\\.nuget\\packages\\syncfusion.xamarin.sfdatagrid\\18.4.0.46\\syncfusion.xamarin.sfdatagrid.18.4.0.46.nupkg.sha512",
+    "C:\\Users\\Mahesh\\.nuget\\packages\\syncfusion.xamarin.sfnumerictextbox\\18.4.0.46\\syncfusion.xamarin.sfnumerictextbox.18.4.0.46.nupkg.sha512",
     "C:\\Users\\Mahesh\\.nuget\\packages\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.8.0.1451\\xamarin.forms.4.8.0.1451.nupkg.sha512"
   ],
