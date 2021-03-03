@@ -147,6 +147,7 @@ namespace App5
         public bool bDeleteFlag = false;
         public bool bReOrderFlag = false;
         public string m_CurrentTopicType;
+        private ISpeechToText _speechRecongnitionInstance;
         public MainPage()
         {
             InitializeComponent();
@@ -163,10 +164,56 @@ namespace App5
             runningW.Source = ImageSource.FromResource("App5.Images.runningW.png");
             musicW.Source = ImageSource.FromResource("App5.Images.musicW.png");
             celebrateW.Source = ImageSource.FromResource("App5.Images.celebrateW.png");
+
+            SpeechToTextInit();
+        }
+        private void SpeechToTextInit()
+        {
+            try
+            {
+                _speechRecongnitionInstance = DependencyService.Get<ISpeechToText>();
+            }
+            catch (Exception ex)
+            {
+                recon.Text = ex.Message;
+            }
+
+
+            MessagingCenter.Subscribe<ISpeechToText, string>(this, "STT", (sender, args) =>
+            {
+                SpeechToTextFinalResultRecieved(args);
+            });
+
+            MessagingCenter.Subscribe<ISpeechToText>(this, "Final", (sender) =>
+            {
+                start.IsEnabled = true;
+            });
+
+            MessagingCenter.Subscribe<IMessageSender, string>(this, "STT", (sender, args) =>
+            {
+                SpeechToTextFinalResultRecieved(args);
+            });
+
+        }
+        private void SpeechToTextFinalResultRecieved(string args)
+        {
+            recon.Text = args;
         }
         private void Start_Clicked(object sender, EventArgs e)
         {
+            try
+            {
+                _speechRecongnitionInstance.StartSpeechToText();
+            }
+            catch (Exception ex)
+            {
+                recon.Text = ex.Message;
+            }
 
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                start.IsEnabled = false;
+            }
         }
         private void BtnPrevTopictype_Clicked(object sender, EventArgs e)
         {

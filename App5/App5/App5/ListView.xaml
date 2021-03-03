@@ -33,12 +33,13 @@
             <Grid Grid.Row="1" >
                 <syncfusion:SfDataGrid   x:Name="dgTopicsLists" GridStyle="{StaticResource dark}"
                         AutoGenerateColumns="False" 
+                                       
                                         HeaderRowHeight="0"
                                        SelectionMode="Single"  
                                         NavigationMode="Cell"      
                                         HorizontalOptions="Fill"  ScrollingMode="PixelLine" >
                     <syncfusion:SfDataGrid.Columns>
-                        <syncfusion:GridTextColumn HeaderText="Topic"  MappingName="TopicName"  ColumnSizer="LastColumnFill"  />
+                        <syncfusion:GridTextColumn HeaderText="Topic"  CellTextSize="20" MappingName="TopicName"  ColumnSizer="LastColumnFill"  />
                         <syncfusion:GridImageColumn HeaderText="X"  MappingName="TrashImg" Width="30" />
                     </syncfusion:SfDataGrid.Columns>
                 </syncfusion:SfDataGrid>
@@ -67,8 +68,8 @@
                                         NavigationMode="Cell"      
                                         HorizontalOptions="Fill"  ScrollingMode="PixelLine" IsVisible="True" >
                     <syncfusion:SfDataGrid.Columns>
-                        <syncfusion:GridTextColumn HeaderText="Items"  MappingName="ItemText"  ColumnSizer="LastColumnFill"  />
                         <syncfusion:GridSwitchColumn HeaderText="Status"  MappingName="Status" Width="30" />
+                        <syncfusion:GridTextColumn HeaderText="Items" CellTextSize="20"  MappingName="ItemText"  ColumnSizer="LastColumnFill"  />
                         <syncfusion:GridImageColumn HeaderText="X"  MappingName="TrashImg" Width="30" />
                     </syncfusion:SfDataGrid.Columns>
                 </syncfusion:SfDataGrid>
