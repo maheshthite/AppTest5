@@ -25,11 +25,15 @@ namespace App5.db
         {
             get
             {
-                var basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                return Path.Combine(basePath, DatabaseFilename);
+                //var basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                //return Path.Combine(basePath, DatabaseFilename);
+                string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
+                return Path.Combine(documentsPath, "..", "Library"); // Library folder instead
+
             }
         }
     }
+
     class ListEngine : INotifyPropertyChanged
     {
         public ObservableCollection<Topic> topiccollection { get; set; }
