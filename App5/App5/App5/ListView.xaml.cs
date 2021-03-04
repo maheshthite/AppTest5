@@ -81,7 +81,8 @@ namespace App5
                 return;
             // Gets the selected item 
             var selectedItem = (Item)e.AddedItems[0];
-            if(bStatusChangeFlag)
+            txtItem.Text = selectedItem.ItemText;
+            if (bStatusChangeFlag)
             {
                 bStatusChangeFlag = false;
                 m_ListEngine.UpdateItem(selectedItem);
@@ -100,6 +101,9 @@ namespace App5
         void ItemDataGrid_CurrentCellActivating(object sender, CurrentCellActivatingEventArgs e)
         {
             var selectedItem = e.CurrentRowColumnIndex;
+            if (selectedItem == null)
+                return;
+
             if (selectedItem.ColumnIndex == 0)
                 bStatusChangeFlag = true;
             else

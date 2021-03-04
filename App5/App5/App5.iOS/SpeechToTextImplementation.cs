@@ -21,7 +21,7 @@ namespace App5.iOS
         private string _recognizedString;
         private bool _isAuthorized;
         private NSTimer _timer;
-
+        private bool isNotContinious=false;
         public SpeechToTextImplementation()
         {
             AskForSpeechPermission();
@@ -80,11 +80,13 @@ namespace App5.iOS
 
         private void StartRecordingAndRecognizing()
         {
-            _timer = NSTimer.CreateRepeatingScheduledTimer(5, delegate
+            if (isNotContinious)
             {
-                DidFinishTalk();
-            });
-
+                _timer = NSTimer.CreateRepeatingScheduledTimer(5, delegate
+                {
+                    DidFinishTalk();
+                });
+            }
             _recognitionTask?.Cancel();
             _recognitionTask = null;
 
@@ -118,12 +120,15 @@ namespace App5.iOS
                 {
                     _recognizedString = result.BestTranscription.FormattedString;
                     MessagingCenter.Send<ISpeechToText, string>(this, "STT", _recognizedString);
-                    _timer.Invalidate();
-                    _timer = null;
-                    _timer = NSTimer.CreateRepeatingScheduledTimer(2, delegate
+                    if (isNotContinious)
                     {
-                        DidFinishTalk();
-                    });
+                        _timer.Invalidate();
+                        _timer = null;
+                        _timer = NSTimer.CreateRepeatingScheduledTimer(2, delegate
+                        {
+                            DidFinishTalk();
+                        });
+                    }
                 }
                 if (error != null || isFinal)
                 {

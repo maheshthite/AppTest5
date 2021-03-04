@@ -12,16 +12,15 @@
         </ResourceDictionary>
 
     </ContentPage.Resources>
-    <StackLayout Margin="5">
+    <StackLayout Margin="2">
         <Grid Margin="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height=".12*" />
                 <RowDefinition Height=".04*" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height=".04*" />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Margin="10" >
+            <Grid Grid.Row="0" Margin="15" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".4*" />
                     <ColumnDefinition Width="*" />
@@ -49,12 +48,6 @@
                 <views:ListView x:Name="MyLists" IsVisible="true"/>
                 <views:QuoteView x:Name="MyQuotes" IsVisible="false"/>
                 <views:ThoughtsView x:Name="MyThoughts" IsVisible="false"/>
-            </Grid>
-            <Grid Grid.Row="3" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Image x:Name="hbarbottom" Grid.Column="0" Source="hbar.png" />
             </Grid>
 
         </Grid>

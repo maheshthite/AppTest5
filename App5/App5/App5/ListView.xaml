@@ -14,10 +14,10 @@
     <StackLayout >
         <Grid Margin="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height=".2*" />
+                <RowDefinition Height=".15*" />
                 <RowDefinition Height=".4*" />                
-                <RowDefinition Height="0.02*" />
-                <RowDefinition Height=".2*" />
+                <RowDefinition Height=".1*" />
+                <RowDefinition Height=".15*" />
                 <RowDefinition Height="*" />
 
             </Grid.RowDefinitions>
@@ -48,7 +48,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Image x:Name="hbartop" Grid.Column="0" Source="hbar.png" />
+                <Image x:Name="hbartop" Grid.Column="0" Source="hbar.png" HorizontalOptions="FillAndExpand" />
             </Grid>
             <Grid Grid.Row="3" >
                 <Grid.ColumnDefinitions>

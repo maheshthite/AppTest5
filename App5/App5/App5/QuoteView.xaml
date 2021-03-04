@@ -68,7 +68,7 @@
                                         HorizontalOptions="Fill"  ScrollingMode="PixelLine" IsVisible="True" >
                     <syncfusion:SfDataGrid.Columns>
                         <syncfusion:GridSwitchColumn HeaderText="Status"  MappingName="Status" Width="30" />
-                        <syncfusion:GridTextColumn HeaderText="Items"  CellTextSize="20" TextAlignment="Start" MappingName="ItemText"  ColumnSizer="LastColumnFill"  />
+                        <syncfusion:GridTextColumn HeaderText="Items"  CellTextSize="20" TextAlignment="Start" MappingName="ItemText"  ColumnSizer="Auto"  />
                         <syncfusion:GridImageColumn HeaderText="X"  MappingName="TrashImg" Width="30" />
                     </syncfusion:SfDataGrid.Columns>
                 </syncfusion:SfDataGrid>
