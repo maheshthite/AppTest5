@@ -40,6 +40,8 @@ namespace App5
             dgItemsLists.SelectionChanged += ItemDataGrid_SelectionChanged;
             dgItemsLists.CurrentCellActivating += ItemDataGrid_CurrentCellActivating;
             dgItemsLists.CurrentCellEndEdit += ItemDataGrid_CurrentCellEndEdit;
+
+
             dgItemsLists.AllowEditing = true;
         }
         public void SetParentMainPage(MainPage mParent)
