@@ -30,8 +30,16 @@ namespace App5
             //BackgroundImageSource = ImageSource.FromResource("App5.Images.bkg1.png");
             hbartop.Source = ImageSource.FromResource("App5.Images.hbar.png");
             m_ListEngine = new ListEngine();
+            dgItemsLists.QueryRowHeight += DataGrid_QueryRowHeight;
 
-
+        }
+        private void DataGrid_QueryRowHeight(object sender, Syncfusion.SfDataGrid.XForms.QueryRowHeightEventArgs e)
+        {
+            if (e.RowIndex > 0)
+            {
+                e.Height = SfDataGridHelpers.GetRowHeight(dgItemsLists, e.RowIndex);
+                e.Handled = true;
+            }
         }
         public void SetParentMainPage(MainPage mParent)
         {
