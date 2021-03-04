@@ -15,6 +15,8 @@ namespace App5
     public partial class QuoteView : ContentView
     {
         ListEngine m_ListEngine;
+        MainPage m_ParentMainPage;
+        public bool bSpeakFlag = false;
         public bool bDeleteFlag = false;
         public bool bDeleteItemFlag = false;
         public bool bReOrderFlag = false;
@@ -30,6 +32,10 @@ namespace App5
             m_ListEngine = new ListEngine();
 
 
+        }
+        public void SetParentMainPage(MainPage mParent)
+        {
+            m_ParentMainPage = mParent;
         }
         public void PageAppearing()
         {
@@ -101,11 +107,48 @@ namespace App5
         //}
         private  void BtnAdd_Clicked(object sender, EventArgs e)
         {
-            Item newItem= new Item(m_CurrentTopic, txtEssay.Text);
+            if (m_CurrentTopic == null)
+            {
+                string strTopic = "Quotes_"+DateTime.Now.ToString("yyyyMMddhhmmssfff");
+                Topic newtopic = new Topic(m_CurrentTopicType, strTopic);
+                m_ListEngine.SaveTopic(newtopic);
+                var rowindex = dgTopicsLists.ResolveToRowIndex(newtopic);
+                //Make the row in to available on the view. 
+                dgTopicsLists.ScrollToRowIndex(rowindex);
+                //to set the found row as current row 
+                dgTopicsLists.View.MoveCurrentTo(newtopic);
+                dgTopicsLists.SelectedIndex = rowindex;
+                m_CurrentTopic = newtopic;
+            }
+
+            Item newItem = new Item(m_CurrentTopic, txtEssay.Text);
             m_ListEngine.SaveItem(newItem);
             txtEssay.Text = "";
-        }
 
+            bSpeakFlag = false;
+            btnSpeak.Text = "Speak";
+            btnSpeak.TextColor = Color.FromHex("#FFFFFF");
+            btnSpeak.BackgroundColor = Color.FromHex("#407DEC");
+        }
+        private void BtnSpeak_Clicked(object sender, EventArgs e)
+        {
+            if (!bSpeakFlag)
+            {
+                btnSpeak.Text = "Stop";
+                btnSpeak.TextColor = Color.Red;
+                btnSpeak.BackgroundColor = Color.White;
+                m_ParentMainPage.Start_Clicked(sender, e);
+                bSpeakFlag = true;
+            }
+            else
+            {
+                bSpeakFlag = false;
+                BtnAdd_Clicked(sender, e);
+                btnSpeak.Text = "Speak";
+                btnSpeak.TextColor = Color.FromHex("#FFFFFF");
+                btnSpeak.BackgroundColor = Color.FromHex("#407DEC");
+            }
+        }
         private  void BtnAddTopic_Clicked(object sender, EventArgs e)
         {
             Topic newtopic = new Topic(m_CurrentTopicType, txtTopic.Text);
@@ -120,22 +163,26 @@ namespace App5
         }
         public void AddTopicItemSpeechtoText(string strItem)
         {
-            // if topic not set , create a unique one
-            if (m_CurrentTopic == null)
-            {
-                string strTopic = DateTime.Now.ToString("Quotes_yyyyMMddhhmmssfff");
-                Topic newtopic = new Topic(m_CurrentTopicType, strTopic);
-                m_ListEngine.SaveTopic(newtopic);
-                var rowindex = dgTopicsLists.ResolveToRowIndex(newtopic);
-                //Make the row in to available on the view. 
-                dgTopicsLists.ScrollToRowIndex(rowindex);
-                //to set the found row as current row 
-                dgTopicsLists.View.MoveCurrentTo(newtopic);
-                dgTopicsLists.SelectedIndex = rowindex;
-                m_CurrentTopic = newtopic;
-            }
-            Item newItem = new Item(m_CurrentTopic, strItem);
-            m_ListEngine.SaveItem(newItem);
+            if (bSpeakFlag)
+                txtEssay.Text = strItem;
+
+
+            //// if topic not set , create a unique one
+            //if (m_CurrentTopic == null)
+            //{
+            //    string strTopic = DateTime.Now.ToString("Quotes_yyyyMMddhhmmssfff");
+            //    Topic newtopic = new Topic(m_CurrentTopicType, strTopic);
+            //    m_ListEngine.SaveTopic(newtopic);
+            //    var rowindex = dgTopicsLists.ResolveToRowIndex(newtopic);
+            //    //Make the row in to available on the view. 
+            //    dgTopicsLists.ScrollToRowIndex(rowindex);
+            //    //to set the found row as current row 
+            //    dgTopicsLists.View.MoveCurrentTo(newtopic);
+            //    dgTopicsLists.SelectedIndex = rowindex;
+            //    m_CurrentTopic = newtopic;
+            //}
+            //Item newItem = new Item(m_CurrentTopic, strItem);
+            //m_ListEngine.SaveItem(newItem);
 
         }
         public  void RefreshData()

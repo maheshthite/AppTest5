@@ -14,12 +14,11 @@
     <StackLayout >
         <Grid Margin="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height=".12*" />
+                <RowDefinition Height=".2*" />
                 <RowDefinition Height=".4*" />                
                 <RowDefinition Height=".1*" />
                 <RowDefinition Height=".3*" />
                 <RowDefinition Height="*" />
-
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" >
@@ -27,8 +26,8 @@
                     <ColumnDefinition Width=".3*"  />
                     <ColumnDefinition Width=".1*" />
                 </Grid.ColumnDefinitions>
-                <Entry  Grid.Column="0"  x:Name="txtTopic" MaxLength="100" Placeholder="New Topic"  Margin="2" ></Entry>
-                <Button Grid.Column="1" x:Name="btnAddTopicLists"  Text="Add New Topic"  Clicked="BtnAddTopic_Clicked" TextColor="#FFFFFF" BackgroundColor="#407DEC"  Margin="2"/>
+                <Entry  Grid.Column="0"  x:Name="txtTopic" FontSize="20" MaxLength="100" Placeholder="New Topic"  Margin="2" ></Entry>
+                <Button Grid.Column="1" x:Name="btnAddTopicLists"  Text="Add Topic"  Clicked="BtnAddTopic_Clicked" TextColor="#FFFFFF" BackgroundColor="#407DEC"  Margin="2"/>
             </Grid>
             <Grid Grid.Row="1" >
                 <syncfusion:SfDataGrid   x:Name="dgTopicsLists" GridStyle="{StaticResource dark}"
@@ -38,7 +37,7 @@
                                         NavigationMode="Cell"      
                                         HorizontalOptions="Fill"  ScrollingMode="PixelLine" >
                     <syncfusion:SfDataGrid.Columns>
-                        <syncfusion:GridTextColumn HeaderText="Topic"  MappingName="TopicName"  ColumnSizer="LastColumnFill"  />
+                        <syncfusion:GridTextColumn HeaderText="Topic" CellTextSize="20"  MappingName="TopicName"  ColumnSizer="LastColumnFill"  />
                         <syncfusion:GridImageColumn HeaderText="X"  MappingName="TrashImg" Width="30" />
                     </syncfusion:SfDataGrid.Columns>
                 </syncfusion:SfDataGrid>
@@ -51,11 +50,13 @@
             </Grid>
             <Grid Grid.Row="3" >
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".1*" />
                     <ColumnDefinition Width=".3*"  />
                     <ColumnDefinition Width=".1*" />
                 </Grid.ColumnDefinitions>
-                <Editor Grid.Column="0" x:Name="txtEssay" AutoSize="TextChanges" Placeholder="Quotes here..." Margin="2"/>
-                <Button Grid.Column="1" x:Name="btnAddLists"  Text="Add"  Clicked="BtnAdd_Clicked" TextColor="#FFFFFF" BackgroundColor="#407DEC" Margin="2"/>
+                <Button Grid.Column="0" x:Name="btnSpeak"  Text="Speak"  Clicked="BtnSpeak_Clicked" TextColor="#FFFFFF" BackgroundColor="#407DEC" Margin="2"/>
+                <Editor Grid.Column="1" x:Name="txtEssay" FontSize="20" AutoSize="TextChanges" Placeholder="Quotes here..." Margin="2"/>
+                <Button Grid.Column="2" x:Name="btnAddLists"  Text="Add"  Clicked="BtnAdd_Clicked" TextColor="#FFFFFF" BackgroundColor="#407DEC" Margin="2"/>
             </Grid>
             <Grid Grid.Row="4" >
          
@@ -66,8 +67,8 @@
                                         NavigationMode="Cell"      
                                         HorizontalOptions="Fill"  ScrollingMode="PixelLine" IsVisible="True" >
                     <syncfusion:SfDataGrid.Columns>
-                        <syncfusion:GridTextColumn HeaderText="Items"  TextAlignment="Start" MappingName="ItemText"  ColumnSizer="LastColumnFill"  />
                         <syncfusion:GridSwitchColumn HeaderText="Status"  MappingName="Status" Width="30" />
+                        <syncfusion:GridTextColumn HeaderText="Items"  CellTextSize="20" TextAlignment="Start" MappingName="ItemText"  ColumnSizer="LastColumnFill"  />
                         <syncfusion:GridImageColumn HeaderText="X"  MappingName="TrashImg" Width="30" />
                     </syncfusion:SfDataGrid.Columns>
                 </syncfusion:SfDataGrid>

@@ -148,6 +148,7 @@ namespace App5
         public bool bReOrderFlag = false;
         public string m_CurrentTopicType;
         private ISpeechToText _speechRecongnitionInstance;
+        private string strSpeachText = "";
         public MainPage()
         {
             InitializeComponent();
@@ -166,6 +167,8 @@ namespace App5
             celebrateW.Source = ImageSource.FromResource("App5.Images.celebrateW.png");
 
             MyLists.SetParentMainPage(this);
+            MyQuotes.SetParentMainPage(this);
+            MyThoughts.SetParentMainPage(this);
             SpeechToTextInit();
         }
         private void SpeechToTextInit()
@@ -176,7 +179,8 @@ namespace App5
             }
             catch (Exception ex)
             {
-                recon.Text = ex.Message;
+                //recon.Text = ex.Message;
+                strSpeachText = ex.Message;
             }
 
 
@@ -187,7 +191,7 @@ namespace App5
 
             MessagingCenter.Subscribe<ISpeechToText>(this, "Final", (sender) =>
             {
-                start.IsEnabled = true;
+                //start.IsEnabled = true;
             });
 
             MessagingCenter.Subscribe<IMessageSender, string>(this, "STT", (sender, args) =>
@@ -198,11 +202,12 @@ namespace App5
         }
         private void SpeechToTextFinalResultRecieved(string args)
         {
-            recon.Text = args;
+            //recon.Text = args;
+            strSpeachText = args;
             if (m_CurrentTopicType == TopicType.List)
-                MyLists.AddTopicItemSpeechtoText(recon.Text);
-            //else if (m_CurrentTopicType == TopicType.Quotes)
-            //    MyQuotes.AddTopicItemSpeechtoText(recon.Text);
+                MyLists.AddTopicItemSpeechtoText(strSpeachText);
+            else if (m_CurrentTopicType == TopicType.Quotes)
+                MyQuotes.AddTopicItemSpeechtoText(strSpeachText);
             //else if (m_CurrentTopicType == TopicType.Thoughts)
             //    MyThoughts.AddTopicItemSpeechtoText(recon.Text);
         }
@@ -214,12 +219,12 @@ namespace App5
             }
             catch (Exception ex)
             {
-                recon.Text = ex.Message;
+                strSpeachText = ex.Message;
             }
 
             if (Device.RuntimePlatform == Device.iOS)
             {
-                start.IsEnabled = false;
+                //start.IsEnabled = false;
             }
         }
         private void BtnPrevTopictype_Clicked(object sender, EventArgs e)

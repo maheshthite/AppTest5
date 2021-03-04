@@ -15,6 +15,8 @@ namespace App5
     public partial class ThoughtsView : ContentView
     {
         ListEngine m_ListEngine;
+        MainPage m_ParentMainPage;
+        public bool bSpeakFlag = false;
         public bool bDeleteFlag = false;
         public bool bReOrderFlag = false;
         public string m_CurrentTopicType;
@@ -32,7 +34,10 @@ namespace App5
             //dgItemsLists.ItemsSource = m_ListEngine.itemscollection;
 
         }
-
+        public void SetParentMainPage(MainPage mParent)
+        {
+            m_ParentMainPage = mParent;
+        }
         private async void DataGrid_SelectionChanged(object sender, GridSelectionChangedEventArgs e)
         {
 
@@ -143,6 +148,26 @@ namespace App5
             dgTopicsLists.SelectionChanged += DataGrid_SelectionChanged;
             dgTopicsLists.CurrentCellActivating += DataGrid_CurrentCellActivating;
         }
+        private void BtnSpeak_Clicked(object sender, EventArgs e)
+        {
+            if (!bSpeakFlag)
+            {
+                btnSpeak.Text = "Stop";
+                btnSpeak.TextColor = Color.Red;
+                btnSpeak.BackgroundColor = Color.White;
+                m_ParentMainPage.Start_Clicked(sender, e);
+                bSpeakFlag = true;
+            }
+            else
+            {
+                bSpeakFlag = false;
+                txtEssay.Text = txtEssay.Text + "\r" + txtSpeachToText.Text;
+                btnSpeak.Text = "Speak";
+                btnSpeak.TextColor = Color.FromHex("#FFFFFF");
+                btnSpeak.BackgroundColor = Color.FromHex("#407DEC");
+                txtSpeachToText.Text = "";
+            }
+        }
         private async void BtnClearText_Clicked(object sender, EventArgs e)
         {
             if (bflagtextchanged)
@@ -157,6 +182,11 @@ namespace App5
         }
         private  void BtnAddTopic_Clicked(object sender, EventArgs e)
         {
+            if (m_CurrentTopic == null)
+            {
+                txtTopic.Text = "Thoughts_" + DateTime.Now.ToString("yyyyMMddhhmmssfff");
+            }
+
             Topic newtopic = m_ListEngine.GetTopic(m_CurrentTopicType, txtTopic.Text);
             if (newtopic == null)
             {
@@ -176,27 +206,30 @@ namespace App5
         }
         public void AddTopicItemSpeechtoText(string strItem)
         {
-            // if topic not set , create a unique one
-            if (m_CurrentTopic == null)
-            {
-                string strTopic = DateTime.Now.ToString("Thoughts_yyyyMMddhhmmssfff");
-                Topic newtopic = new Topic(m_CurrentTopicType, strTopic);
-                m_ListEngine.SaveTopic(newtopic);
-                Item newItem = new Item(m_CurrentTopic, txtEssay.Text);
-                m_ListEngine.SaveThoughtItem(newItem);
-                var rowindex = dgTopicsLists.ResolveToRowIndex(newtopic);
-                //Make the row in to available on the view. 
-                dgTopicsLists.ScrollToRowIndex(rowindex);
-                //to set the found row as current row 
-                dgTopicsLists.View.MoveCurrentTo(newtopic);
-                dgTopicsLists.SelectedIndex = rowindex;
-                m_CurrentTopic = newtopic;
-            }
-            else
-            {
-                Item newItem = new Item(m_CurrentTopic, txtEssay.Text);
-                m_ListEngine.SaveThoughtItem(newItem);
-            }
+            if (bSpeakFlag)
+                txtSpeachToText.Text = strItem;
+
+            //// if topic not set , create a unique one
+            //if (m_CurrentTopic == null)
+            //{
+            //    string strTopic = DateTime.Now.ToString("Thoughts_yyyyMMddhhmmssfff");
+            //    Topic newtopic = new Topic(m_CurrentTopicType, strTopic);
+            //    m_ListEngine.SaveTopic(newtopic);
+            //    Item newItem = new Item(m_CurrentTopic, txtEssay.Text);
+            //    m_ListEngine.SaveThoughtItem(newItem);
+            //    var rowindex = dgTopicsLists.ResolveToRowIndex(newtopic);
+            //    //Make the row in to available on the view. 
+            //    dgTopicsLists.ScrollToRowIndex(rowindex);
+            //    //to set the found row as current row 
+            //    dgTopicsLists.View.MoveCurrentTo(newtopic);
+            //    dgTopicsLists.SelectedIndex = rowindex;
+            //    m_CurrentTopic = newtopic;
+            //}
+            //else
+            //{
+            //    Item newItem = new Item(m_CurrentTopic, txtEssay.Text);
+            //    m_ListEngine.SaveThoughtItem(newItem);
+            //}
 
         }
         public void EditorTextChanged(object sender, TextChangedEventArgs e)

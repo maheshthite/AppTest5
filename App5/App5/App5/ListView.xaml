@@ -12,7 +12,7 @@
 
     </ContentView.Resources>
     <StackLayout >
-        <Grid Margin="2">
+        <Grid Margin="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height=".2*" />
                 <RowDefinition Height=".4*" />                

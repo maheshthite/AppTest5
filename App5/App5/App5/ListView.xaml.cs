@@ -105,7 +105,7 @@ namespace App5
         {
             if (m_CurrentTopic == null)
             {
-                string strTopic = DateTime.Now.ToString("List_yyyyMMddhhmmssfff");
+                string strTopic = "List_"+ DateTime.Now.ToString("yyyyMMddhhmmssfff");
                 Topic newtopic = new Topic(m_CurrentTopicType, strTopic);
                 m_ListEngine.SaveTopic(newtopic);
                 var rowindex = dgTopicsLists.ResolveToRowIndex(newtopic);
@@ -119,6 +119,12 @@ namespace App5
             Item newItem= new Item(m_CurrentTopic, txtItem.Text);
             m_ListEngine.SaveItem(newItem);
             txtItem.Text = "";
+
+            bSpeakFlag = false;
+            btnSpeak.Text = "Speak";
+            btnSpeak.TextColor = Color.FromHex("#FFFFFF");
+            btnSpeak.BackgroundColor = Color.FromHex("#407DEC");
+
         }
 
         private  void BtnAddTopic_Clicked(object sender, EventArgs e)
@@ -132,6 +138,8 @@ namespace App5
             //to set the found row as current row 
             dgTopicsLists.View.MoveCurrentTo(newtopic);
             dgTopicsLists.SelectedIndex = rowindex;
+
+
         }
         private void BtnSpeak_Clicked(object sender, EventArgs e)
         {
