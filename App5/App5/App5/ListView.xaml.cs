@@ -88,6 +88,7 @@ namespace App5
                 // Gets the selected item 
                 var selectedItem = (Item)e.AddedItems[0];
                 txtItem.Text = selectedItem.ItemText;
+                await App.Current.MainPage.DisplayAlert("ItemDataGrid_SelectionChanged Status", selectedItem.Status.ToString(), "ok");
                 //if (bStatusChangeFlag)
                 //{
                 //    bStatusChangeFlag = false;
@@ -140,10 +141,11 @@ namespace App5
         {
             try
             {
-
+                await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_CurrentCellEndEdit", "ok");
                 var recordIndex = dgItemsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
                 var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
                 var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
+                await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
                 //Item selItem1 = (Item)dgItemsLists.
                 if (mappingName == "Status")
                 {
