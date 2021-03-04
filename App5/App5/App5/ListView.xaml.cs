@@ -35,6 +35,7 @@ namespace App5
             dgTopicsLists.ItemsSource = m_ListEngine.topiccollection;
             dgTopicsLists.SelectionChanged += DataGrid_SelectionChanged;
             dgTopicsLists.CurrentCellActivating += DataGrid_CurrentCellActivating;
+            dgTopicsLists.ValueChanged += TopicsLists_ValueChanged;
 
             dgItemsLists.ItemsSource = m_ListEngine.itemscollection;
             dgItemsLists.SelectionChanged += ItemDataGrid_SelectionChanged;
@@ -140,45 +141,69 @@ namespace App5
                 await App.Current.MainPage.DisplayAlert("ItemDataGrid_SelectionChanged", exception.Message, "ok");
             }
         }
-        private async void ItemDataGrid_ValueChanged(object sender, Syncfusion.SfDataGrid.XForms.ValueChangedEventArgs e)
-        {
-           // await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_ValueChanged", "ok");
-            var recordIndex = dgItemsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
-            var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
-            var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
-            //await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
-            Item selItem = (Item)e.RowData;
-            //Item selItem1 = (Item)dgItemsLists.
-            if (mappingName == "Status" && selItem != null)
-            {
-                //Item selItem = (Item)dgItemsLists.SelectedItem;
-                await App.Current.MainPage.DisplayAlert("ItemDataGrid_ValueChanged Status", selItem.Status.ToString(), "ok");
-                m_ListEngine.UpdateItem(selItem);
-            }
-        }
-
-        private async void ItemDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
+        
+        private async void TopicsLists_ValueChanged(object sender, Syncfusion.SfDataGrid.XForms.ValueChangedEventArgs e)
         {
             try
             {
-               // await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_CurrentCellEndEdit", "ok");
+                Topic selItem = (Topic)e.RowData;
+                if (selItem != null)
+                {
+                    m_ListEngine.UpdateTopic(selItem);
+                }
+            }
+            catch (Exception exception)
+            {
+                await App.Current.MainPage.DisplayAlert("TopicsLists_ValueChanged", exception.Message, "ok");
+            }
+        }
+        private async void ItemDataGrid_ValueChanged(object sender, Syncfusion.SfDataGrid.XForms.ValueChangedEventArgs e)
+        {
+            try
+            {
+                // await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_ValueChanged", "ok");
                 var recordIndex = dgItemsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
                 var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
                 var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
-                await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
+                //await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
+                Item selItem = (Item)e.RowData;
                 //Item selItem1 = (Item)dgItemsLists.
-                if (mappingName == "Status")
+                if (selItem != null) //mappingName == "Status" && 
                 {
-                     Item selItem = (Item)dgItemsLists.SelectedItem;
-                 //   await App.Current.MainPage.DisplayAlert("Status", selItem.Status.ToString(), "ok");
+                    //Item selItem = (Item)dgItemsLists.SelectedItem;
+                    //await App.Current.MainPage.DisplayAlert("ItemDataGrid_ValueChanged Status", selItem.Status.ToString(), "ok");
                     m_ListEngine.UpdateItem(selItem);
                 }
             }
             catch (Exception exception)
             {
                 //LogMsg.Log(exception.Message);
-                await App.Current.MainPage.DisplayAlert("ItemDataGrid_CurrentCellEndEdit", exception.Message, "ok");
+                await App.Current.MainPage.DisplayAlert("ItemDataGrid_ValueChanged", exception.Message, "ok");
             }
+        }
+
+        private async void ItemDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
+        {
+            //try
+            //{
+            //   // await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_CurrentCellEndEdit", "ok");
+            //    var recordIndex = dgItemsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
+            //    var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
+            //    var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
+            //    await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
+            //    //Item selItem1 = (Item)dgItemsLists.
+            //    if (mappingName == "Status")
+            //    {
+            //         Item selItem = (Item)dgItemsLists.SelectedItem;
+            //     //   await App.Current.MainPage.DisplayAlert("Status", selItem.Status.ToString(), "ok");
+            //        m_ListEngine.UpdateItem(selItem);
+            //    }
+            //}
+            //catch (Exception exception)
+            //{
+            //    //LogMsg.Log(exception.Message);
+            //    await App.Current.MainPage.DisplayAlert("ItemDataGrid_CurrentCellEndEdit", exception.Message, "ok");
+            //}
         }
 
         //protected  override void OnAppearing()
@@ -203,10 +228,10 @@ namespace App5
             m_ListEngine.SaveItem(newItem);
             txtItem.Text = "";
 
-            bSpeakFlag = false;
-            btnSpeak.Text = "Speak";
-            btnSpeak.TextColor = Color.FromHex("#FFFFFF");
-            btnSpeak.BackgroundColor = Color.FromHex("#407DEC");
+            //bSpeakFlag = false;
+            //btnSpeak.Text = "Speak";
+            //btnSpeak.TextColor = Color.FromHex("#FFFFFF");
+            //btnSpeak.BackgroundColor = Color.FromHex("#407DEC");
 
         }
 

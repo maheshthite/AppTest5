@@ -134,10 +134,10 @@ namespace App5
             m_ListEngine.SaveItem(newItem);
             txtEssay.Text = "";
 
-            bSpeakFlag = false;
-            btnSpeak.Text = "Speak";
-            btnSpeak.TextColor = Color.FromHex("#FFFFFF");
-            btnSpeak.BackgroundColor = Color.FromHex("#407DEC");
+            //bSpeakFlag = false;
+            //btnSpeak.Text = "Speak";
+            //btnSpeak.TextColor = Color.FromHex("#FFFFFF");
+            //btnSpeak.BackgroundColor = Color.FromHex("#407DEC");
         }
         private void BtnSpeak_Clicked(object sender, EventArgs e)
         {
