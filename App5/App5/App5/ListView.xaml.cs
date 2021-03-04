@@ -85,6 +85,7 @@ namespace App5
             if (bStatusChangeFlag)
             {
                 bStatusChangeFlag = false;
+                selectedItem.Status = !selectedItem.Status;// try force toggle
                 m_ListEngine.UpdateItem(selectedItem);
             }
             if (bDeleteItemFlag)
@@ -168,6 +169,7 @@ namespace App5
             }
             else
             {
+                m_ParentMainPage.StopSpeechToText();
                 bSpeakFlag = false;
                 BtnAdd_Clicked(sender, e);
                 btnSpeak.Text = "Speak";

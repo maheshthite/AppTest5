@@ -30,17 +30,17 @@ namespace App5
             //BackgroundImageSource = ImageSource.FromResource("App5.Images.bkg1.png");
             hbartop.Source = ImageSource.FromResource("App5.Images.hbar.png");
             m_ListEngine = new ListEngine();
-            dgItemsLists.QueryRowHeight += DataGrid_QueryRowHeight;
+            //dgItemsLists.QueryRowHeight += DataGrid_QueryRowHeight;
 
         }
-        private void DataGrid_QueryRowHeight(object sender, Syncfusion.SfDataGrid.XForms.QueryRowHeightEventArgs e)
-        {
-            if (e.RowIndex > 0)
-            {
-                e.Height = SfDataGridHelpers.GetRowHeight(dgItemsLists, e.RowIndex);
-                e.Handled = true;
-            }
-        }
+        //private void DataGrid_QueryRowHeight(object sender, Syncfusion.SfDataGrid.XForms.QueryRowHeightEventArgs e)
+        //{
+        //    if (e.RowIndex > 0)
+        //    {
+        //        e.Height = SfDataGridHelpers.GetRowHeight(dgItemsLists, e.RowIndex);
+        //        e.Handled = true;
+        //    }
+        //}
         public void SetParentMainPage(MainPage mParent)
         {
             m_ParentMainPage = mParent;
@@ -105,7 +105,7 @@ namespace App5
         void ItemDataGrid_CurrentCellActivating(object sender, CurrentCellActivatingEventArgs e)
         {
             var selectedItem = e.CurrentRowColumnIndex;
-            if (selectedItem.ColumnIndex == 2)
+            if (selectedItem.ColumnIndex == 1)
                 bDeleteItemFlag = true;
             else
                 bDeleteItemFlag = false;
@@ -150,6 +150,7 @@ namespace App5
             }
             else
             {
+                m_ParentMainPage.StopSpeechToText();
                 bSpeakFlag = false;
                 BtnAdd_Clicked(sender, e);
                 btnSpeak.Text = "Speak";

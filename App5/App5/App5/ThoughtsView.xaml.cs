@@ -160,6 +160,7 @@ namespace App5
             }
             else
             {
+                m_ParentMainPage.StopSpeechToText();
                 bSpeakFlag = false;
                 txtEssay.Text = txtEssay.Text + "\r" + txtSpeachToText.Text;
                 btnSpeak.Text = "Speak";
