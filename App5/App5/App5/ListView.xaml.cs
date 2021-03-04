@@ -39,6 +39,7 @@ namespace App5
             dgItemsLists.ItemsSource = m_ListEngine.itemscollection;
             dgItemsLists.SelectionChanged += ItemDataGrid_SelectionChanged;
             dgItemsLists.CurrentCellActivating += ItemDataGrid_CurrentCellActivating;
+            dgItemsLists.CurrentCellEndEdit += ItemDataGrid_CurrentCellEndEdit;
         }
         public void SetParentMainPage(MainPage mParent)
         {
@@ -77,43 +78,83 @@ namespace App5
         }
         private async void ItemDataGrid_SelectionChanged(object sender, GridSelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count == 0)
-                return;
-            // Gets the selected item 
-            var selectedItem = (Item)e.AddedItems[0];
-            txtItem.Text = selectedItem.ItemText;
-            if (bStatusChangeFlag)
+            try
             {
-                bStatusChangeFlag = false;
-                selectedItem.Status = !selectedItem.Status;// try force toggle
-                m_ListEngine.UpdateItem(selectedItem);
-            }
-            if (bDeleteItemFlag)
-            {
-                var ans = await App.Current.MainPage.DisplayAlert(selectedItem.ItemText, "Would you like Delete", "Yes", "No");
-                if (ans == true)
+                if (m_ListEngine.itemscollection.Count == 0)
+                    return;
+                if (e.AddedItems.Count == 0)
+                    return;
+                // Gets the selected item 
+                var selectedItem = (Item)e.AddedItems[0];
+                txtItem.Text = selectedItem.ItemText;
+                //if (bStatusChangeFlag)
+                //{
+                //    bStatusChangeFlag = false;
+                //    selectedItem.Status = !selectedItem.Status;// try force toggle
+                //    m_ListEngine.UpdateItem(selectedItem);
+                //}
+                if (bDeleteItemFlag)
                 {
-                    m_ListEngine.DeleteItem(selectedItem);
+                    var ans = await App.Current.MainPage.DisplayAlert(selectedItem.ItemText, "Would you like Delete", "Yes", "No");
+                    if (ans == true)
+                    {
+                        m_ListEngine.DeleteItem(selectedItem);
+                    }
+                }
+
+                bDeleteItemFlag = false;
+            }
+            catch (Exception exception)
+            {
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("ItemDataGrid_SelectionChanged",exception.Message,"ok");
+            }
+        }
+        public async void  ItemDataGrid_CurrentCellActivating(object sender, CurrentCellActivatingEventArgs e)
+        {
+            try
+            {
+                if (m_ListEngine.itemscollection.Count == 0)
+                return;
+                var selectedItem = e.CurrentRowColumnIndex;
+                if (selectedItem == null)
+                    return;
+
+                //if (selectedItem.ColumnIndex == 0)
+                //    bStatusChangeFlag = true;
+                //else
+                //    bStatusChangeFlag = false;
+                if (selectedItem.ColumnIndex == 2)
+                    bDeleteItemFlag = true;
+                else
+                    bDeleteItemFlag = false;
+            }
+            catch (Exception exception)
+            {
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("ItemDataGrid_SelectionChanged", exception.Message, "ok");
+            }
+        }
+        private async void ItemDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
+        {
+            try
+            {
+                var recordIndex = dgItemsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
+                var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
+                var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
+                if (mappingName == "Status")
+                {
+                    Item selItem = (Item)dgItemsLists.SelectedItem;
+                    m_ListEngine.UpdateItem(selItem);
                 }
             }
-
-            bDeleteItemFlag = false;
+            catch (Exception exception)
+            {
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("ItemDataGrid_CurrentCellEndEdit", exception.Message, "ok");
+            }
         }
-        void ItemDataGrid_CurrentCellActivating(object sender, CurrentCellActivatingEventArgs e)
-        {
-            var selectedItem = e.CurrentRowColumnIndex;
-            if (selectedItem == null)
-                return;
 
-            if (selectedItem.ColumnIndex == 0)
-                bStatusChangeFlag = true;
-            else
-                bStatusChangeFlag = false;
-            if (selectedItem.ColumnIndex == 2)
-                bDeleteItemFlag = true;
-            else
-                bDeleteItemFlag = false;
-        }
         //protected  override void OnAppearing()
         //{
         //}

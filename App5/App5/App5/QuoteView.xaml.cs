@@ -92,6 +92,7 @@ namespace App5
                 return;
             // Gets the selected item 
             var selectedItem = (Item)e.AddedItems[0];
+            txtEssay.Text = selectedItem.ItemText;
             if (bDeleteItemFlag)
             {
                 var ans = await App.Current.MainPage.DisplayAlert(selectedItem.ItemText, "Would you like Delete", "Yes", "No");

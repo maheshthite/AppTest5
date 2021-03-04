@@ -67,7 +67,7 @@
                                         NavigationMode="Cell"      
                                         HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" ScrollingMode="PixelLine" IsVisible="True" >
                     <syncfusion:SfDataGrid.Columns>
-                        <syncfusion:GridTextColumn HeaderText="Items"  CellTextSize="20" TextAlignment="Start" MappingName="ItemText"  ColumnSizer="LastColumnFill" />
+                        <syncfusion:GridTextColumn HeaderText="Items"  CellTextSize="15" TextAlignment="Start" MappingName="ItemText"  ColumnSizer="LastColumnFill" />
                         <syncfusion:GridImageColumn HeaderText="X"  MappingName="TrashImg" Width="30" />
                     </syncfusion:SfDataGrid.Columns>
                 </syncfusion:SfDataGrid>
