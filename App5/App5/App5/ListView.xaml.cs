@@ -40,7 +40,7 @@ namespace App5
             dgItemsLists.SelectionChanged += ItemDataGrid_SelectionChanged;
             dgItemsLists.CurrentCellActivating += ItemDataGrid_CurrentCellActivating;
             dgItemsLists.CurrentCellEndEdit += ItemDataGrid_CurrentCellEndEdit;
-
+            dgItemsLists.ValueChanged += ItemDataGrid_ValueChanged;
 
             dgItemsLists.AllowEditing = true;
         }
@@ -139,6 +139,22 @@ namespace App5
                 await App.Current.MainPage.DisplayAlert("ItemDataGrid_SelectionChanged", exception.Message, "ok");
             }
         }
+        private async void ItemDataGrid_ValueChanged(object sender, GridCurrentCellEndEditEventArgs e)
+        {
+            await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_ValueChanged", "ok");
+            var recordIndex = dgItemsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
+            var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
+            var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
+            await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
+            //Item selItem1 = (Item)dgItemsLists.
+            if (mappingName == "Status")
+            {
+                Item selItem = (Item)dgItemsLists.SelectedItem;
+                await App.Current.MainPage.DisplayAlert("ItemDataGrid_ValueChanged Status", selItem.Status.ToString(), "ok");
+                m_ListEngine.UpdateItem(selItem);
+            }
+        }
+
         private async void ItemDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
         {
             try
