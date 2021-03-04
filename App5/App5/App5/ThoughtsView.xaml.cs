@@ -179,7 +179,7 @@ namespace App5
             // if topic not set , create a unique one
             if (m_CurrentTopic == null)
             {
-                string strTopic = DateTime.Now.ToString("List_yyyyMMddhhmmssfff");
+                string strTopic = DateTime.Now.ToString("Thoughts_yyyyMMddhhmmssfff");
                 Topic newtopic = new Topic(m_CurrentTopicType, strTopic);
                 m_ListEngine.SaveTopic(newtopic);
                 Item newItem = new Item(m_CurrentTopic, txtEssay.Text);
@@ -194,8 +194,8 @@ namespace App5
             }
             else
             {
-                Item newItem = new Item(m_CurrentTopic, strItem);
-                m_ListEngine.SaveItem(newItem);
+                Item newItem = new Item(m_CurrentTopic, txtEssay.Text);
+                m_ListEngine.SaveThoughtItem(newItem);
             }
 
         }

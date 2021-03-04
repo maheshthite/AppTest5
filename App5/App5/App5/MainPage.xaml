@@ -12,11 +12,11 @@
         </ResourceDictionary>
 
     </ContentPage.Resources>
-    <StackLayout Margin="2">
+    <StackLayout Margin="5">
         <Grid Margin="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height=".08*" />
-                <RowDefinition Height=".08*" />
+                <RowDefinition Height=".12*" />
+                <RowDefinition Height=".04*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height=".28*" />
             </Grid.RowDefinitions>

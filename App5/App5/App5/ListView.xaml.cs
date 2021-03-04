@@ -20,7 +20,7 @@ namespace App5
         public bool bReOrderFlag = false;
         public string m_CurrentTopicType;
         public Topic m_CurrentTopic;
-
+        public string mLastSpeaktoText="";
         public ListView()
         {
             InitializeComponent();
@@ -115,8 +115,15 @@ namespace App5
             dgTopicsLists.View.MoveCurrentTo(newtopic);
             dgTopicsLists.SelectedIndex = rowindex;
         }
+        private void BtnSpeak_Clicked(object sender, EventArgs e)
+        {
+            //App.Current.MainPag (sender, e);
+        }
+            
         public void AddTopicItemSpeechtoText(string strItem)
         {
+            if (strItem == mLastSpeaktoText)
+                return;
             // if topic not set , create a unique one
             if (m_CurrentTopic == null)
             {
@@ -133,7 +140,7 @@ namespace App5
             }
             Item newItem = new Item(m_CurrentTopic, strItem);
             m_ListEngine.SaveItem(newItem);
-
+            mLastSpeaktoText = strItem;
         }
         public  void RefreshData()
         {
