@@ -147,10 +147,11 @@ namespace App5
             var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
             var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
             await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
+            Item selItem = (Item)e.RowData;
             //Item selItem1 = (Item)dgItemsLists.
-            if (mappingName == "Status")
+            if (mappingName == "Status" && selItem != null)
             {
-                Item selItem = (Item)dgItemsLists.SelectedItem;
+                //Item selItem = (Item)dgItemsLists.SelectedItem;
                 await App.Current.MainPage.DisplayAlert("ItemDataGrid_ValueChanged Status", selItem.Status.ToString(), "ok");
                 m_ListEngine.UpdateItem(selItem);
             }
