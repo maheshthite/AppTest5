@@ -40,6 +40,7 @@ namespace App5
             dgItemsLists.SelectionChanged += ItemDataGrid_SelectionChanged;
             dgItemsLists.CurrentCellActivating += ItemDataGrid_CurrentCellActivating;
             dgItemsLists.CurrentCellEndEdit += ItemDataGrid_CurrentCellEndEdit;
+            dgItemsLists.AllowEditing = true;
         }
         public void SetParentMainPage(MainPage mParent)
         {
@@ -139,12 +140,15 @@ namespace App5
         {
             try
             {
+
                 var recordIndex = dgItemsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
                 var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
                 var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
+                //Item selItem1 = (Item)dgItemsLists.
                 if (mappingName == "Status")
                 {
-                    Item selItem = (Item)dgItemsLists.SelectedItem;
+                     Item selItem = (Item)dgItemsLists.SelectedItem;
+                    await App.Current.MainPage.DisplayAlert("Status", selItem.Status.ToString(), "ok");
                     m_ListEngine.UpdateItem(selItem);
                 }
             }
