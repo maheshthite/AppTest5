@@ -165,6 +165,7 @@ namespace App5
             musicW.Source = ImageSource.FromResource("App5.Images.musicW.png");
             celebrateW.Source = ImageSource.FromResource("App5.Images.celebrateW.png");
 
+            MyLists.SetParentMainPage(this);
             SpeechToTextInit();
         }
         private void SpeechToTextInit()
