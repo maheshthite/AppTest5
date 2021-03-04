@@ -51,7 +51,10 @@
                 <views:ThoughtsView x:Name="MyThoughts" IsVisible="false"/>
             </Grid>
             <Grid Grid.Row="3" >
-
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image x:Name="hbarbottom" Grid.Column="0" Source="hbar.png" />
             </Grid>
 
         </Grid>

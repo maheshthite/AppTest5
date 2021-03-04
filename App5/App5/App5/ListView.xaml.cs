@@ -20,6 +20,7 @@ namespace App5
         public bool bDeleteFlag = false;
         public bool bDeleteItemFlag = false;
         public bool bReOrderFlag = false;
+        public bool bStatusChangeFlag = false;
         public string m_CurrentTopicType;
         public Topic m_CurrentTopic;
         public ListView()
@@ -80,6 +81,11 @@ namespace App5
                 return;
             // Gets the selected item 
             var selectedItem = (Item)e.AddedItems[0];
+            if(bStatusChangeFlag)
+            {
+                bStatusChangeFlag = false;
+                m_ListEngine.UpdateItem(selectedItem);
+            }
             if (bDeleteItemFlag)
             {
                 var ans = await App.Current.MainPage.DisplayAlert(selectedItem.ItemText, "Would you like Delete", "Yes", "No");
@@ -88,11 +94,16 @@ namespace App5
                     m_ListEngine.DeleteItem(selectedItem);
                 }
             }
+
             bDeleteItemFlag = false;
         }
         void ItemDataGrid_CurrentCellActivating(object sender, CurrentCellActivatingEventArgs e)
         {
             var selectedItem = e.CurrentRowColumnIndex;
+            if (selectedItem.ColumnIndex == 0)
+                bStatusChangeFlag = true;
+            else
+                bStatusChangeFlag = false;
             if (selectedItem.ColumnIndex == 2)
                 bDeleteItemFlag = true;
             else

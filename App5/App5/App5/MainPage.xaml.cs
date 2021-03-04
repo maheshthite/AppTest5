@@ -155,7 +155,7 @@ namespace App5
             m_CurrentTopicType = TopicType.List;
             BackgroundImageSource = ImageSource.FromResource("App5.Images.bkg1.png");
             //hbartop.Source = ImageSource.FromResource("App1.Images.hbar.png");
-            //hbarbottom.Source = ImageSource.FromResource("App1.Images.hbar.png");
+            hbarbottom.Source = ImageSource.FromResource("App1.Images.hbar.png");
 
             prev.Source = ImageSource.FromResource("App5.Images.prev2.png");
             next.Source = ImageSource.FromResource("App5.Images.next2.png");
@@ -208,8 +208,8 @@ namespace App5
                 MyLists.AddTopicItemSpeechtoText(strSpeachText);
             else if (m_CurrentTopicType == TopicType.Quotes)
                 MyQuotes.AddTopicItemSpeechtoText(strSpeachText);
-            //else if (m_CurrentTopicType == TopicType.Thoughts)
-            //    MyThoughts.AddTopicItemSpeechtoText(recon.Text);
+            else if (m_CurrentTopicType == TopicType.Thoughts)
+                MyThoughts.AddTopicItemSpeechtoText(strSpeachText);
         }
         public void Start_Clicked(object sender, EventArgs e)
         {

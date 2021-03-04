@@ -50,6 +50,9 @@ namespace App5 {
         private global::App5.ThoughtsView MyThoughts;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.Image hbarbottom;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(MainPage));
             prev = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ImageButton>(this, "prev");
@@ -63,6 +66,7 @@ namespace App5 {
             MyLists = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::App5.ListView>(this, "MyLists");
             MyQuotes = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::App5.QuoteView>(this, "MyQuotes");
             MyThoughts = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::App5.ThoughtsView>(this, "MyThoughts");
+            hbarbottom = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Image>(this, "hbarbottom");
         }
     }
 }
