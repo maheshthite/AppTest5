@@ -42,6 +42,7 @@ namespace App5
             dgItemsLists.CurrentCellEndEdit += ItemDataGrid_CurrentCellEndEdit;
             dgItemsLists.ValueChanged += ItemDataGrid_ValueChanged;
 
+
             dgItemsLists.AllowEditing = true;
         }
         public void SetParentMainPage(MainPage mParent)
@@ -139,7 +140,7 @@ namespace App5
                 await App.Current.MainPage.DisplayAlert("ItemDataGrid_SelectionChanged", exception.Message, "ok");
             }
         }
-        private async void ItemDataGrid_ValueChanged(object sender, GridCurrentCellEndEditEventArgs e)
+        private async void ItemDataGrid_ValueChanged(object sender, Syncfusion.SfDataGrid.XForms.ValueChangedEventArgs e)
         {
             await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_ValueChanged", "ok");
             var recordIndex = dgItemsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
