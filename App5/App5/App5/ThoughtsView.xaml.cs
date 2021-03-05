@@ -89,65 +89,72 @@ namespace App5
         }
         private async void DataGrid_SelectionChanged(object sender, GridSelectionChangedEventArgs e)
         {
-
-            if(bflagtextchanged)
+            try
             {
-                if (m_CurrentTopic.TopicName == null|| m_CurrentTopic.TopicName == "")
+                if (bflagtextchanged)
                 {
-                    var ans = await App.Current.MainPage.DisplayAlert(m_CurrentTopic.TopicName, "If you like Save edited text please name the topic ", "Yes", "No");
+                    if (m_CurrentTopic.TopicName == null|| m_CurrentTopic.TopicName == "")
+                    {
+                        var ans = await App.Current.MainPage.DisplayAlert(m_CurrentTopic.TopicName, "If you like Save edited text please name the topic ", "Yes", "No");
+                        if (ans == true)
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        if(m_CurrentTopic.TopicName == txtTopic.Text)  // update exising
+                        {
+                            Item newItem = new Item(m_CurrentTopic, txtEssay.Text);
+                            m_ListEngine.SaveThoughtItem(newItem);
+                        }
+                        else // create new
+                        {
+                            Topic newtopic = new Topic(m_CurrentTopicType, txtTopic.Text);
+                            m_ListEngine.SaveTopic(newtopic);
+                            Item newItem = new Item(newtopic, txtEssay.Text);
+                            m_ListEngine.SaveThoughtItem(newItem);
+                        }
+
+                    }
+                    bflagtextchanged = false;
+                }
+                if (e.AddedItems.Count == 0)
+                    return;
+                // Gets the selected item 
+                var selectedItem = (Topic)e.AddedItems[0];
+                if (bDeleteFlag)
+                {
+                    var ans = await App.Current.MainPage.DisplayAlert(selectedItem.TopicName, "Would you like Delete", "Yes", "No");
                     if (ans == true)
                     {
-                        return;
+                        txtEssay.Text = "";
+                        m_ListEngine.DeleteTopic(selectedItem);
+                        bDeleteFlag = false;
                     }
                 }
                 else
                 {
-                    if(m_CurrentTopic.TopicName == txtTopic.Text)  // update exising
+                    m_CurrentTopic = selectedItem;
+                    m_ListEngine.GetItemsList(m_CurrentTopic);
+                    var item = m_ListEngine.itemscollection.FirstOrDefault();
+                    if (item != null)
                     {
-                        Item newItem = new Item(m_CurrentTopic, txtEssay.Text);
-                        m_ListEngine.SaveThoughtItem(newItem);
+                        txtTopic.Text = m_CurrentTopic.TopicName;
+                        txtEssay.Text = item.ItemText;
                     }
-                    else // create new
+                    else
                     {
-                        Topic newtopic = new Topic(m_CurrentTopicType, txtTopic.Text);
-                        m_ListEngine.SaveTopic(newtopic);
-                        Item newItem = new Item(newtopic, txtEssay.Text);
-                        m_ListEngine.SaveThoughtItem(newItem);
+                        txtTopic.Text = m_CurrentTopic.TopicName;
+                        txtEssay.Text = "";
                     }
-
-                }
-                bflagtextchanged = false;
-            }
-            if (e.AddedItems.Count == 0)
-                return;
-            // Gets the selected item 
-            var selectedItem = (Topic)e.AddedItems[0];
-            if (bDeleteFlag)
-            {
-                var ans = await App.Current.MainPage.DisplayAlert(selectedItem.TopicName, "Would you like Delete", "Yes", "No");
-                if (ans == true)
-                {
-                    txtEssay.Text = "";
-                    m_ListEngine.DeleteTopic(selectedItem);
-                    bDeleteFlag = false;
+                    bflagtextchanged = false;
                 }
             }
-            else
+            catch (Exception exception)
             {
-                m_CurrentTopic = selectedItem;
-                m_ListEngine.GetItemsList(m_CurrentTopic);
-                var item = m_ListEngine.itemscollection.FirstOrDefault();
-                if (item != null)
-                {
-                    txtTopic.Text = m_CurrentTopic.TopicName;
-                    txtEssay.Text = item.ItemText;
-                }
-                else
-                {
-                    txtTopic.Text = m_CurrentTopic.TopicName;
-                    txtEssay.Text = "";
-                }
-                bflagtextchanged = false;
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("DataGrid_SelectionChanged", exception.Message, "ok");
             }
         }
         void DataGrid_CurrentCellActivating(object sender, CurrentCellActivatingEventArgs e)
@@ -159,35 +166,43 @@ namespace App5
 
         public async void PageDisappearing()
         {
-            if (bflagtextchanged)
-            {
-                if (m_CurrentTopic.TopicName == null || m_CurrentTopic.TopicName == "")
-                {
-                    var ans = await App.Current.MainPage.DisplayAlert(m_CurrentTopic.TopicName, "If you like Save edited text please name the topic ", "Yes", "No");
-                    if (ans == true)
-                    {
-                        return;
-                    }
-                }
-                else
-                {
-                    if (m_CurrentTopic.TopicName == txtTopic.Text)  // update exising
-                    {
-                        Item newItem = new Item(m_CurrentTopic, txtEssay.Text);
-                        m_ListEngine.SaveThoughtItem(newItem);
-                    }
-                    else // create new
-                    {
-                        Topic newtopic = new Topic(m_CurrentTopicType, txtTopic.Text);
-                        m_ListEngine.SaveTopic(newtopic);
-                        Item newItem = new Item(newtopic, txtEssay.Text);
-                        m_ListEngine.SaveThoughtItem(newItem);
-                    }
+            try 
+            { 
 
+                if (bflagtextchanged)
+                {
+                    if (m_CurrentTopic.TopicName == null || m_CurrentTopic.TopicName == "")
+                    {
+                        var ans = await App.Current.MainPage.DisplayAlert(m_CurrentTopic.TopicName, "If you like Save edited text please name the topic ", "Yes", "No");
+                        if (ans == true)
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        if (m_CurrentTopic.TopicName == txtTopic.Text)  // update exising
+                        {
+                            Item newItem = new Item(m_CurrentTopic, txtEssay.Text);
+                            m_ListEngine.SaveThoughtItem(newItem);
+                        }
+                        else // create new
+                        {
+                            Topic newtopic = new Topic(m_CurrentTopicType, txtTopic.Text);
+                            m_ListEngine.SaveTopic(newtopic);
+                            Item newItem = new Item(newtopic, txtEssay.Text);
+                            m_ListEngine.SaveThoughtItem(newItem);
+                        }
+
+                    }
+                    bflagtextchanged = false;
                 }
-                bflagtextchanged = false;
             }
-
+            catch (Exception exception)
+            {
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("PageDisappearing", exception.Message, "ok");
+            }
         }
 
 
@@ -224,29 +239,38 @@ namespace App5
             txtEssay.Text = "";
             bflagtextchanged = false;
         }
-        private  void BtnAddTopic_Clicked(object sender, EventArgs e)
+        private async void BtnAddTopic_Clicked(object sender, EventArgs e)
         {
-            if (m_CurrentTopic == null)
-            {
-                txtTopic.Text = "Thoughts_" + DateTime.Now.ToString("yyyyMMddhhmmssfff");
-            }
+            try 
+            { 
 
-            Topic newtopic = m_ListEngine.GetTopic(m_CurrentTopicType, txtTopic.Text);
-            if (newtopic == null)
-            {
-                newtopic = new Topic(m_CurrentTopicType, txtTopic.Text);
-                m_ListEngine.SaveTopic(newtopic);
+                if (m_CurrentTopic == null)
+                {
+                    txtTopic.Text = "Thoughts_" + DateTime.Now.ToString("yyyyMMddhhmmssfff");
+                }
+
+                Topic newtopic = m_ListEngine.GetTopic(m_CurrentTopicType, txtTopic.Text);
+                if (newtopic == null)
+                {
+                    newtopic = new Topic(m_CurrentTopicType, txtTopic.Text);
+                    m_ListEngine.SaveTopic(newtopic);
+                }
+                m_CurrentTopic = newtopic;
+                Item newItem = new Item(m_CurrentTopic, txtEssay.Text);
+                m_ListEngine.SaveThoughtItem(newItem);
+                var rowindex = dgTopicsLists.ResolveToRowIndex(newtopic);
+                //Make the row in to available on the view. 
+                await dgTopicsLists.ScrollToRowIndex(rowindex);
+                //to set the found row as current row 
+                dgTopicsLists.View.MoveCurrentTo(newtopic);
+                dgTopicsLists.SelectedIndex = rowindex;
+                bflagtextchanged = false;
             }
-            m_CurrentTopic = newtopic;
-            Item newItem = new Item(m_CurrentTopic, txtEssay.Text);
-            m_ListEngine.SaveThoughtItem(newItem);
-            var rowindex = dgTopicsLists.ResolveToRowIndex(newtopic);
-            //Make the row in to available on the view. 
-            dgTopicsLists.ScrollToRowIndex(rowindex);
-            //to set the found row as current row 
-            dgTopicsLists.View.MoveCurrentTo(newtopic);
-            dgTopicsLists.SelectedIndex = rowindex;
-            bflagtextchanged = false;
+            catch (Exception exception)
+            {
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("BtnAddTopic_Clicked", exception.Message, "ok");
+            }
         }
         public void AddTopicItemSpeechtoText(string strItem)
         {

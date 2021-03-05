@@ -238,46 +238,61 @@ namespace App5
         //protected  override void OnAppearing()
         //{
         //}
-        private  void BtnAdd_Clicked(object sender, EventArgs e)
+        private async void BtnAdd_Clicked(object sender, EventArgs e)
         {
-            if (m_CurrentTopic == null)
+            try 
+            { 
+                if (m_CurrentTopic == null)
+                {
+                    string strTopic = "List_"+ DateTime.Now.ToString("yyyyMMddhhmmssfff");
+                    Topic newtopic = new Topic(m_CurrentTopicType, strTopic);
+                    m_ListEngine.SaveTopic(newtopic);
+                    var rowindex = dgTopicsLists.ResolveToRowIndex(newtopic);
+                    //Make the row in to available on the view. 
+                    await dgTopicsLists.ScrollToRowIndex(rowindex);
+                    //to set the found row as current row 
+                    dgTopicsLists.View.MoveCurrentTo(newtopic);
+                    dgTopicsLists.SelectedIndex = rowindex;
+                    m_CurrentTopic = newtopic;
+                }
+                Item newItem= new Item(m_CurrentTopic, txtItem.Text);
+                m_ListEngine.SaveItem(newItem);
+                txtItem.Text = "";
+
+                //bSpeakFlag = false;
+                //btnSpeak.Text = "Speak";
+                //btnSpeak.TextColor = Color.FromHex("#FFFFFF");
+                //btnSpeak.BackgroundColor = Color.FromHex("#407DEC");
+            }
+            catch (Exception exception)
             {
-                string strTopic = "List_"+ DateTime.Now.ToString("yyyyMMddhhmmssfff");
-                Topic newtopic = new Topic(m_CurrentTopicType, strTopic);
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("BtnAdd_Clicked", exception.Message, "ok");
+            }
+
+        }
+
+        private  async void BtnAddTopic_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Topic newtopic = new Topic(m_CurrentTopicType, txtTopic.Text);
                 m_ListEngine.SaveTopic(newtopic);
+                txtTopic.Text = "";
                 var rowindex = dgTopicsLists.ResolveToRowIndex(newtopic);
                 //Make the row in to available on the view. 
-                dgTopicsLists.ScrollToRowIndex(rowindex);
+                await dgTopicsLists.ScrollToRowIndex(rowindex);
                 //to set the found row as current row 
                 dgTopicsLists.View.MoveCurrentTo(newtopic);
                 dgTopicsLists.SelectedIndex = rowindex;
                 m_CurrentTopic = newtopic;
+                m_ListEngine.GetItemsList(m_CurrentTopic);
+            }   
+            catch (Exception exception)
+            {
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("BtnAddTopic_Clicked", exception.Message, "ok");
             }
-            Item newItem= new Item(m_CurrentTopic, txtItem.Text);
-            m_ListEngine.SaveItem(newItem);
-            txtItem.Text = "";
-
-            //bSpeakFlag = false;
-            //btnSpeak.Text = "Speak";
-            //btnSpeak.TextColor = Color.FromHex("#FFFFFF");
-            //btnSpeak.BackgroundColor = Color.FromHex("#407DEC");
-
-        }
-
-        private  void BtnAddTopic_Clicked(object sender, EventArgs e)
-        {
-            Topic newtopic = new Topic(m_CurrentTopicType, txtTopic.Text);
-            m_ListEngine.SaveTopic(newtopic);
-            txtTopic.Text = "";
-            var rowindex = dgTopicsLists.ResolveToRowIndex(newtopic);
-            //Make the row in to available on the view. 
-            dgTopicsLists.ScrollToRowIndex(rowindex);
-            //to set the found row as current row 
-            dgTopicsLists.View.MoveCurrentTo(newtopic);
-            dgTopicsLists.SelectedIndex = rowindex;
-            m_CurrentTopic = newtopic;
-            m_ListEngine.GetItemsList(m_CurrentTopic);
-
         }
         private void BtnSpeak_Clicked(object sender, EventArgs e)
         {
