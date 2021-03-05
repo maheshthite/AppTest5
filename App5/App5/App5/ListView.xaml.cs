@@ -144,38 +144,6 @@ namespace App5
                 await App.Current.MainPage.DisplayAlert("ItemDataGrid_SelectionChanged", exception.Message, "ok");
             }
         }
-
-        private void TopicDataGrid_CurrentCellBeginEdit(object sender, GridCurrentCellBeginEditEventArgs e)
-        {
-            m_EditTopic = (Topic)dgTopicsLists.SelectedItem;
-        }
-        private async void TopicDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
-        {
-            try
-            {
-                // await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_CurrentCellEndEdit", "ok");
-                var recordIndex = dgTopicsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
-                var columnIndex = dgTopicsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
-                var mappingName = dgTopicsLists.Columns[columnIndex].MappingName;
-                await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
-
-                if (mappingName == "TopicName" && m_EditTopic !=null)
-                {
-                    Topic selItem = (Topic)m_EditTopic;
-                    if (selItem != null)
-                    {
-                        await App.Current.MainPage.DisplayAlert("TopicName", selItem.TopicName, "ok");
-                        m_ListEngine.UpdateTopic(selItem);
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                //LogMsg.Log(exception.Message);
-                await App.Current.MainPage.DisplayAlert("TopicDataGrid_CurrentCellEndEdit", exception.Message, "ok");
-            }
-        }
-
         private async void ItemDataGrid_ValueChanged(object sender, Syncfusion.SfDataGrid.XForms.ValueChangedEventArgs e)
         {
             try
@@ -200,6 +168,38 @@ namespace App5
                 await App.Current.MainPage.DisplayAlert("ItemDataGrid_ValueChanged", exception.Message, "ok");
             }
         }
+
+        private void TopicDataGrid_CurrentCellBeginEdit(object sender, GridCurrentCellBeginEditEventArgs e)
+        {
+            m_EditTopic = (Topic)dgTopicsLists.SelectedItem;
+        }
+        private async void TopicDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
+        {
+            try
+            {
+                // await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_CurrentCellEndEdit", "ok");
+                var recordIndex = dgTopicsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
+                var columnIndex = dgTopicsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
+                var mappingName = dgTopicsLists.Columns[columnIndex].MappingName;
+                //await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
+
+                if (mappingName == "TopicName" && m_EditTopic !=null)
+                {
+                    Topic selItem = (Topic)m_EditTopic;
+                    if (selItem != null)
+                    {
+                        //await App.Current.MainPage.DisplayAlert("TopicName", selItem.TopicName, "ok");
+                        m_ListEngine.UpdateTopic(selItem);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("TopicDataGrid_CurrentCellEndEdit", exception.Message, "ok");
+            }
+        }
+
         private void ItemDataGrid_CurrentCellBeginEdit(object sender, GridCurrentCellBeginEditEventArgs e)
         {
             m_EditItem = (Item)dgItemsLists.SelectedItem;

@@ -22,6 +22,7 @@ namespace App5
         public string m_CurrentTopicType;
         public Topic m_CurrentTopic;
         public bool bflagtextchanged = false;
+        public Topic m_EditTopic;
         public ThoughtsView()
         {
             InitializeComponent();
@@ -34,6 +35,47 @@ namespace App5
             //dgItemsLists.ItemsSource = m_ListEngine.itemscollection;
 
         }
+        public void PageAppearing()
+        {
+            m_ListEngine.GetTopicList(m_CurrentTopicType);
+            dgTopicsLists.ItemsSource = m_ListEngine.topiccollection;
+            dgTopicsLists.SelectionChanged += DataGrid_SelectionChanged;
+            dgTopicsLists.CurrentCellActivating += DataGrid_CurrentCellActivating;
+            dgTopicsLists.CurrentCellBeginEdit += TopicDataGrid_CurrentCellBeginEdit;
+            dgTopicsLists.CurrentCellEndEdit += TopicDataGrid_CurrentCellEndEdit;
+            dgTopicsLists.AllowEditing = true;
+        }
+        private void TopicDataGrid_CurrentCellBeginEdit(object sender, GridCurrentCellBeginEditEventArgs e)
+        {
+            m_EditTopic = (Topic)dgTopicsLists.SelectedItem;
+        }
+        private async void TopicDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
+        {
+            try
+            {
+                // await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_CurrentCellEndEdit", "ok");
+                var recordIndex = dgTopicsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
+                var columnIndex = dgTopicsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
+                var mappingName = dgTopicsLists.Columns[columnIndex].MappingName;
+                //await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
+
+                if (mappingName == "TopicName" && m_EditTopic != null)
+                {
+                    Topic selItem = (Topic)m_EditTopic;
+                    if (selItem != null)
+                    {
+                        //await App.Current.MainPage.DisplayAlert("TopicName", selItem.TopicName, "ok");
+                        m_ListEngine.UpdateTopic(selItem);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("TopicDataGrid_CurrentCellEndEdit", exception.Message, "ok");
+            }
+        }
+
         public void SetParentMainPage(MainPage mParent)
         {
             m_ParentMainPage = mParent;
@@ -141,13 +183,7 @@ namespace App5
 
         }
 
-        public void PageAppearing()
-        {
-            m_ListEngine.GetTopicList(m_CurrentTopicType);
-            dgTopicsLists.ItemsSource = m_ListEngine.topiccollection;
-            dgTopicsLists.SelectionChanged += DataGrid_SelectionChanged;
-            dgTopicsLists.CurrentCellActivating += DataGrid_CurrentCellActivating;
-        }
+
         private void BtnSpeak_Clicked(object sender, EventArgs e)
         {
             if (!bSpeakFlag)

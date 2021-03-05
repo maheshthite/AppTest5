@@ -22,7 +22,8 @@ namespace App5
         public bool bReOrderFlag = false;
         public string m_CurrentTopicType;
         public Topic m_CurrentTopic;
-
+        public Item m_EditItem;
+        public Topic m_EditTopic;
         public QuoteView()
         {
             InitializeComponent();
@@ -51,31 +52,46 @@ namespace App5
             dgTopicsLists.ItemsSource = m_ListEngine.topiccollection;
             dgTopicsLists.SelectionChanged += DataGrid_SelectionChanged;
             dgTopicsLists.CurrentCellActivating += DataGrid_CurrentCellActivating;
+            dgTopicsLists.CurrentCellBeginEdit += TopicDataGrid_CurrentCellBeginEdit;
+            dgTopicsLists.CurrentCellEndEdit += TopicDataGrid_CurrentCellEndEdit;
+            dgTopicsLists.AllowEditing = true;
 
             dgItemsLists.ItemsSource = m_ListEngine.itemscollection;
             dgItemsLists.SelectionChanged += ItemDataGrid_SelectionChanged;
             dgItemsLists.CurrentCellActivating += ItemDataGrid_CurrentCellActivating;
+            dgItemsLists.CurrentCellBeginEdit += ItemDataGrid_CurrentCellBeginEdit;
+            dgItemsLists.CurrentCellEndEdit += ItemDataGrid_CurrentCellEndEdit;
+            dgItemsLists.AllowEditing = true;
+
         }
         private async void DataGrid_SelectionChanged(object sender, GridSelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count == 0)
+            try
+            {
+                if (e.AddedItems.Count == 0)
                 return;
-            // Gets the selected item 
-            var selectedItem = (Topic)e.AddedItems[0];
-            if (bDeleteFlag)
-            {
-                var ans = await App.Current.MainPage.DisplayAlert(selectedItem.TopicName, "Would you like Delete", "Yes", "No");
-                if (ans == true)
+                // Gets the selected item 
+                var selectedItem = (Topic)e.AddedItems[0];
+                if (bDeleteFlag)
                 {
-                    m_ListEngine.DeleteTopic(selectedItem);
+                    var ans = await App.Current.MainPage.DisplayAlert(selectedItem.TopicName, "Would you like Delete", "Yes", "No");
+                    if (ans == true)
+                    {
+                        m_ListEngine.DeleteTopic(selectedItem);
+                    }
+                    bDeleteFlag = false;
                 }
-                bDeleteFlag = false;
-            }
-            else
-            {
-                m_CurrentTopic = selectedItem;
-                m_ListEngine.GetItemsList(m_CurrentTopic);
+                else
+                {
+                    m_CurrentTopic = selectedItem;
+                    m_ListEngine.GetItemsList(m_CurrentTopic);
 
+                }
+            }
+            catch (Exception exception)
+            {
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("DataGrid_SelectionChanged", exception.Message, "ok");
             }
         }
         void DataGrid_CurrentCellActivating(object sender, CurrentCellActivatingEventArgs e)
@@ -88,20 +104,28 @@ namespace App5
         }
         private async void ItemDataGrid_SelectionChanged(object sender, GridSelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count == 0)
-                return;
-            // Gets the selected item 
-            var selectedItem = (Item)e.AddedItems[0];
-            txtEssay.Text = selectedItem.ItemText;
-            if (bDeleteItemFlag)
+            try
             {
-                var ans = await App.Current.MainPage.DisplayAlert(selectedItem.ItemText, "Would you like Delete", "Yes", "No");
-                if (ans == true)
+                if (e.AddedItems.Count == 0)
+                return;
+                // Gets the selected item 
+                var selectedItem = (Item)e.AddedItems[0];
+                txtEssay.Text = selectedItem.ItemText;
+                if (bDeleteItemFlag)
                 {
-                    m_ListEngine.DeleteItem(selectedItem);
+                    var ans = await App.Current.MainPage.DisplayAlert(selectedItem.ItemText, "Would you like Delete", "Yes", "No");
+                    if (ans == true)
+                    {
+                        m_ListEngine.DeleteItem(selectedItem);
+                    }
                 }
+                bDeleteItemFlag = false;
             }
-            bDeleteItemFlag = false;
+            catch (Exception exception)
+            {
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("DataGrid_SelectionChanged", exception.Message, "ok");
+            }
         }
         void ItemDataGrid_CurrentCellActivating(object sender, CurrentCellActivatingEventArgs e)
         {
@@ -111,10 +135,72 @@ namespace App5
             else
                 bDeleteItemFlag = false;
         }
+        private void TopicDataGrid_CurrentCellBeginEdit(object sender, GridCurrentCellBeginEditEventArgs e)
+        {
+            m_EditTopic = (Topic)dgTopicsLists.SelectedItem;
+        }
+        private async void TopicDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
+        {
+            try
+            {
+                // await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_CurrentCellEndEdit", "ok");
+                var recordIndex = dgTopicsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
+                var columnIndex = dgTopicsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
+                var mappingName = dgTopicsLists.Columns[columnIndex].MappingName;
+                //await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
+
+                if (mappingName == "TopicName" && m_EditTopic != null)
+                {
+                    Topic selItem = (Topic)m_EditTopic;
+                    if (selItem != null)
+                    {
+                        //await App.Current.MainPage.DisplayAlert("TopicName", selItem.TopicName, "ok");
+                        m_ListEngine.UpdateTopic(selItem);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("TopicDataGrid_CurrentCellEndEdit", exception.Message, "ok");
+            }
+        }
+
+        private void ItemDataGrid_CurrentCellBeginEdit(object sender, GridCurrentCellBeginEditEventArgs e)
+        {
+            m_EditItem = (Item)dgItemsLists.SelectedItem;
+        }
+        private async void ItemDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
+        {
+            try
+            {
+                // await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_CurrentCellEndEdit", "ok");
+                var recordIndex = dgItemsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
+                var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
+                var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
+                //await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
+
+                if (mappingName == "ItemText" && m_EditItem != null)
+                {
+                    Item selItem = (Item)m_EditItem;
+                    if (selItem != null)
+                    {
+                        //await App.Current.MainPage.DisplayAlert("ItemText", selItem.ItemText, "ok");
+                        m_ListEngine.UpdateItem(selItem);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("ItemDataGrid_CurrentCellEndEdit", exception.Message, "ok");
+            }
+        }
+
         //protected  override void OnAppearing()
         //{
         //}
-        private  void BtnAdd_Clicked(object sender, EventArgs e)
+        private void BtnAdd_Clicked(object sender, EventArgs e)
         {
             if (m_CurrentTopic == null)
             {
