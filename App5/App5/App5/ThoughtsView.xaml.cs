@@ -58,16 +58,19 @@ namespace App5
                 var columnIndex = dgTopicsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
                 var mappingName = dgTopicsLists.Columns[columnIndex].MappingName;
                 //await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
+                Topic selItem = (Topic)dgTopicsLists.GetRecordAtRowIndex(recordIndex + 1);
 
-                if (mappingName == "TopicName" && m_EditTopic != null)
+                if (mappingName == "TopicName" && selItem != null)
                 {
-                    Topic selItem = (Topic)m_EditTopic;
-                    if (selItem != null)
+                    //Topic selItem = (Topic)m_EditTopic;
+                    //if (selItem != null)
                     {
+                        selItem.TopicName = (string)e.NewValue;
                         //await App.Current.MainPage.DisplayAlert("TopicName", selItem.TopicName, "ok");
                         m_ListEngine.UpdateTopic(selItem);
                     }
                 }
+
             }
             catch (Exception exception)
             {

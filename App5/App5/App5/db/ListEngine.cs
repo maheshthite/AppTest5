@@ -127,7 +127,7 @@ namespace App5.db
             var db = new SQLiteConnection(DBConstants.DatabasePath);
             Console.WriteLine("Reading data");
             //var table = db.Table<Topic>();
-            var table = db.Query<Topic>("SELECT * FROM Topic WHERE TopicType = ?", sTopicType);
+            var table = db.Query<Topic>("SELECT * FROM Topic WHERE TopicType = ? ORDER BY UpdateTime DESC ", sTopicType);
             foreach (var s in table)
             {
                 Console.WriteLine(s.TopicType + " " + s.TopicName);
@@ -145,7 +145,7 @@ namespace App5.db
             var db = new SQLiteConnection(DBConstants.DatabasePath);
             var tableEmpty = db.Table<Topic>();
             db.Insert(newTopic);
-            topiccollection.Add(newTopic);
+            topiccollection.Insert(0, newTopic);  //Add(newTopic);
             return 1;
         }
         public int UpdateTopic(Topic newTopic)

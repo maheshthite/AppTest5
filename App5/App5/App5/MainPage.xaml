@@ -27,7 +27,7 @@
                     <ColumnDefinition Width=".4*" />
                 </Grid.ColumnDefinitions>
                 <ImageButton  x:Name="prev" Grid.Column="0"  Source="prev2.png" Clicked="BtnPrevTopictype_Clicked"  />
-                <Label  x:Name="lblTopicType" Grid.Column="1" Text="Lists" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="#407DEC" TextColor="#FFFFFF"  />
+                <Button  x:Name="lblTopicType" Grid.Column="1" Text="Lists"  BackgroundColor="#407DEC" TextColor="#FFFFFF" Clicked="BtnNextTopictype_Clicked" />
                 <ImageButton  x:Name="next" Grid.Column="2"  Clicked="BtnNextTopictype_Clicked"   />
             </Grid>
             <Grid Grid.Row="1" >
