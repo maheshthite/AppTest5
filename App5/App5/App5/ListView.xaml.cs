@@ -177,18 +177,20 @@ namespace App5
         private async void TopicDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
         {
             try
-            {
+            { 
                 // await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_CurrentCellEndEdit", "ok");
                 var recordIndex = dgTopicsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
                 var columnIndex = dgTopicsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
                 var mappingName = dgTopicsLists.Columns[columnIndex].MappingName;
                 //await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
                 Topic selItem = (Topic)dgTopicsLists.GetRecordAtRowIndex(recordIndex);
+    
                 if (mappingName == "TopicName" && selItem != null)
                 {
                     //Topic selItem = (Topic)m_EditTopic;
                     //if (selItem != null)
                     {
+                        selItem.TopicName = (string)e.NewValue;
                         //await App.Current.MainPage.DisplayAlert("TopicName", selItem.TopicName, "ok");
                         m_ListEngine.UpdateTopic(selItem);
                     }
@@ -217,6 +219,7 @@ namespace App5
                 Item selItem = (Item)dgItemsLists.GetRecordAtRowIndex(recordIndex);
                 if (mappingName == "ItemText" && selItem != null)
                 {
+                    selItem.ItemText = (string)e.NewValue;
                     //Item selItem = (Item)m_EditItem;
                     //if (selItem != null)
                     {
