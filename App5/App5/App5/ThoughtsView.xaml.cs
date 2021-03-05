@@ -35,6 +35,10 @@ namespace App5
             //dgItemsLists.ItemsSource = m_ListEngine.itemscollection;
 
         }
+        private void NotesEditor_Focused(object sender, FocusEventArgs e)
+        {
+            scrollview.ScrollToAsync(0, 0, true);
+        }
         public void PageAppearing()
         {
             m_ListEngine.GetTopicList(m_CurrentTopicType);

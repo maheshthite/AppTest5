@@ -54,8 +54,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"  />
                 </Grid.ColumnDefinitions>
-                <ScrollView Grid.Column="0" >
-                <Editor x:Name="txtEssay" FontSize="20"  TextChanged="EditorTextChanged" AutoSize="TextChanges" Placeholder="your thoughts..." Margin="2"/>
+                <ScrollView Grid.Column="0" x:Name="scrollview">
+                    <Editor x:Name="txtEssay" FontSize="20"  TextChanged="EditorTextChanged" Focused="NotesEditor_Focused"  AutoSize="TextChanges" Placeholder="your thoughts..." Margin="2"/>
                 </ScrollView>
             </Grid>
             <Grid Grid.Row="4" >

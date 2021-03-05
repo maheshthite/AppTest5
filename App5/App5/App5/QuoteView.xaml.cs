@@ -182,16 +182,18 @@ namespace App5
                 var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
                 var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
                 //await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
-
-                if (mappingName == "ItemText" && m_EditItem != null)
+                Item selItem = (Item)dgItemsLists.GetRecordAtRowIndex(recordIndex + 1);
+                if (mappingName == "ItemText" && selItem != null)
                 {
-                    Item selItem = (Item)m_EditItem;
-                    if (selItem != null)
+                    selItem.ItemText = (string)e.NewValue;
+                    //Item selItem = (Item)m_EditItem;
+                    //if (selItem != null)
                     {
                         //await App.Current.MainPage.DisplayAlert("ItemText", selItem.ItemText, "ok");
                         m_ListEngine.UpdateItem(selItem);
                     }
                 }
+
             }
             catch (Exception exception)
             {
