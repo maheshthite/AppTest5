@@ -24,6 +24,7 @@ namespace App5
         public string m_CurrentTopicType;
         public Topic m_CurrentTopic;
         public Item m_EditItem;
+        public Topic m_EditTopic;
         public ListView()
         {
             InitializeComponent();
@@ -36,12 +37,14 @@ namespace App5
             dgTopicsLists.ItemsSource = m_ListEngine.topiccollection;
             dgTopicsLists.SelectionChanged += DataGrid_SelectionChanged;
             dgTopicsLists.CurrentCellActivating += DataGrid_CurrentCellActivating;
-            dgTopicsLists.ValueChanged += TopicsLists_ValueChanged;
+            //dgTopicsLists.ValueChanged += TopicsLists_ValueChanged;
+            dgTopicsLists.CurrentCellBeginEdit += TopicDataGrid_CurrentCellBeginEdit;
+            dgTopicsLists.CurrentCellEndEdit += TopicDataGrid_CurrentCellEndEdit;
             dgTopicsLists.AllowEditing = true;
             dgItemsLists.ItemsSource = m_ListEngine.itemscollection;
             dgItemsLists.SelectionChanged += ItemDataGrid_SelectionChanged;
             dgItemsLists.CurrentCellActivating += ItemDataGrid_CurrentCellActivating;
-            dgItemsLists.CurrentCellEndEdit += ItemDataGrid_CurrentCellBeginEdit;
+            dgItemsLists.CurrentCellBeginEdit += ItemDataGrid_CurrentCellBeginEdit;
             dgItemsLists.CurrentCellEndEdit += ItemDataGrid_CurrentCellEndEdit;
             dgItemsLists.ValueChanged += ItemDataGrid_ValueChanged;
             dgItemsLists.AllowEditing = true;
@@ -141,22 +144,38 @@ namespace App5
                 await App.Current.MainPage.DisplayAlert("ItemDataGrid_SelectionChanged", exception.Message, "ok");
             }
         }
-        
-        private async void TopicsLists_ValueChanged(object sender, Syncfusion.SfDataGrid.XForms.ValueChangedEventArgs e)
+
+        private void TopicDataGrid_CurrentCellBeginEdit(object sender, GridCurrentCellBeginEditEventArgs e)
+        {
+            m_EditTopic = (Topic)dgTopicsLists.SelectedItem;
+        }
+        private async void TopicDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
         {
             try
             {
-                Topic selItem = (Topic)e.RowData;
-                if (selItem != null)
+                // await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_CurrentCellEndEdit", "ok");
+                var recordIndex = dgTopicsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
+                var columnIndex = dgTopicsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
+                var mappingName = dgTopicsLists.Columns[columnIndex].MappingName;
+                await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
+
+                if (mappingName == "TopicName" && m_EditTopic !=null)
                 {
-                    m_ListEngine.UpdateTopic(selItem);
+                    Topic selItem = (Topic)m_EditTopic;
+                    if (selItem != null)
+                    {
+                        await App.Current.MainPage.DisplayAlert("TopicName", selItem.TopicName, "ok");
+                        m_ListEngine.UpdateTopic(selItem);
+                    }
                 }
             }
             catch (Exception exception)
             {
-                await App.Current.MainPage.DisplayAlert("TopicsLists_ValueChanged", exception.Message, "ok");
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("TopicDataGrid_CurrentCellEndEdit", exception.Message, "ok");
             }
         }
+
         private async void ItemDataGrid_ValueChanged(object sender, Syncfusion.SfDataGrid.XForms.ValueChangedEventArgs e)
         {
             try
@@ -181,11 +200,11 @@ namespace App5
                 await App.Current.MainPage.DisplayAlert("ItemDataGrid_ValueChanged", exception.Message, "ok");
             }
         }
-        private void ItemDataGrid_CurrentCellBeginEdit(object sender, GridCurrentCellEndEditEventArgs e)
+        private void ItemDataGrid_CurrentCellBeginEdit(object sender, GridCurrentCellBeginEditEventArgs e)
         {
             m_EditItem = (Item)dgItemsLists.SelectedItem;
         }
-         private async void ItemDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
+        private async void ItemDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
         {
             try
             {
@@ -193,14 +212,14 @@ namespace App5
                 var recordIndex = dgItemsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
                 var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
                 var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
-                await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
+                //await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
 
-                if (mappingName == "ItemText" )
+                if (mappingName == "ItemText" && m_EditItem != null)
                 {
                     Item selItem = (Item)m_EditItem;
                     if (selItem != null)
                     {
-                        await App.Current.MainPage.DisplayAlert("ItemText", selItem.ItemText, "ok");
+                        //await App.Current.MainPage.DisplayAlert("ItemText", selItem.ItemText, "ok");
                         m_ListEngine.UpdateItem(selItem);
                     }
                 }
