@@ -36,14 +36,12 @@ namespace App5
             dgTopicsLists.SelectionChanged += DataGrid_SelectionChanged;
             dgTopicsLists.CurrentCellActivating += DataGrid_CurrentCellActivating;
             dgTopicsLists.ValueChanged += TopicsLists_ValueChanged;
-
+            dgTopicsLists.AllowEditing = true;
             dgItemsLists.ItemsSource = m_ListEngine.itemscollection;
             dgItemsLists.SelectionChanged += ItemDataGrid_SelectionChanged;
             dgItemsLists.CurrentCellActivating += ItemDataGrid_CurrentCellActivating;
             dgItemsLists.CurrentCellEndEdit += ItemDataGrid_CurrentCellEndEdit;
             dgItemsLists.ValueChanged += ItemDataGrid_ValueChanged;
-
-
             dgItemsLists.AllowEditing = true;
         }
         public void SetParentMainPage(MainPage mParent)
@@ -171,7 +169,7 @@ namespace App5
                 if (selItem != null) //mappingName == "Status" && 
                 {
                     //Item selItem = (Item)dgItemsLists.SelectedItem;
-                    //await App.Current.MainPage.DisplayAlert("ItemDataGrid_ValueChanged Status", selItem.Status.ToString(), "ok");
+                    await App.Current.MainPage.DisplayAlert("ItemDataGrid_ValueChanged Status", selItem.Status.ToString(), "ok");
                     m_ListEngine.UpdateItem(selItem);
                 }
             }
