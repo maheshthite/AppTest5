@@ -183,7 +183,7 @@ namespace App5
                 var columnIndex = dgTopicsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
                 var mappingName = dgTopicsLists.Columns[columnIndex].MappingName;
                 //await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
-                Topic selItem = (Topic)dgTopicsLists.GetRecordAtRowIndex(recordIndex);
+                Topic selItem = (Topic)dgTopicsLists.GetRecordAtRowIndex(recordIndex+1);
     
                 if (mappingName == "TopicName" && selItem != null)
                 {
@@ -216,7 +216,7 @@ namespace App5
                 var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
                 var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
                 //await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
-                Item selItem = (Item)dgItemsLists.GetRecordAtRowIndex(recordIndex);
+                Item selItem = (Item)dgItemsLists.GetRecordAtRowIndex(recordIndex+1);
                 if (mappingName == "ItemText" && selItem != null)
                 {
                     selItem.ItemText = (string)e.NewValue;
