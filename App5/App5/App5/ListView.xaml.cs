@@ -166,10 +166,10 @@ namespace App5
                 //await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
                 Item selItem = (Item)e.RowData;
                 //Item selItem1 = (Item)dgItemsLists.
-                if (selItem != null) //mappingName == "Status" && 
+                if (mappingName == "Status" && selItem != null) //mappingName == "Status" && 
                 {
                     //Item selItem = (Item)dgItemsLists.SelectedItem;
-                    await App.Current.MainPage.DisplayAlert("ItemDataGrid_ValueChanged Status", selItem.Status.ToString(), "ok");
+                    //await App.Current.MainPage.DisplayAlert("ItemDataGrid_ValueChanged Status", selItem.Status.ToString(), "ok");
                     m_ListEngine.UpdateItem(selItem);
                 }
             }
@@ -182,26 +182,30 @@ namespace App5
 
         private async void ItemDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
         {
-            //try
-            //{
-            //   // await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_CurrentCellEndEdit", "ok");
-            //    var recordIndex = dgItemsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
-            //    var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
-            //    var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
-            //    await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
-            //    //Item selItem1 = (Item)dgItemsLists.
-            //    if (mappingName == "Status")
-            //    {
-            //         Item selItem = (Item)dgItemsLists.SelectedItem;
-            //     //   await App.Current.MainPage.DisplayAlert("Status", selItem.Status.ToString(), "ok");
-            //        m_ListEngine.UpdateItem(selItem);
-            //    }
-            //}
-            //catch (Exception exception)
-            //{
-            //    //LogMsg.Log(exception.Message);
-            //    await App.Current.MainPage.DisplayAlert("ItemDataGrid_CurrentCellEndEdit", exception.Message, "ok");
-            //}
+            try
+            {
+                // await App.Current.MainPage.DisplayAlert("Inside", "ItemDataGrid_CurrentCellEndEdit", "ok");
+                var recordIndex = dgItemsLists.ResolveToRecordIndex(e.RowColumnIndex.RowIndex);
+                var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
+                var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
+                await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
+                //Item selItem1 = (Item)dgItemsLists.
+                //Item selItem = (Item)e.RowData;
+                if (mappingName == "ItemText" )
+                {
+                    Item selItem = (Item)dgItemsLists.SelectedItem;
+                    if (selItem != null)
+                    {
+                        await App.Current.MainPage.DisplayAlert("ItemText", selItem.ItemText, "ok");
+                        m_ListEngine.UpdateItem(selItem);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                //LogMsg.Log(exception.Message);
+                await App.Current.MainPage.DisplayAlert("ItemDataGrid_CurrentCellEndEdit", exception.Message, "ok");
+            }
         }
 
         //protected  override void OnAppearing()
