@@ -7,7 +7,7 @@ using System.Text;
 using Xamarin.Forms;
 namespace App5.db
 {
-    class Item : INotifyPropertyChanged
+    public class Item : INotifyPropertyChanged
     {
         string _TopicId;
         [DataMember]

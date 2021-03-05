@@ -23,6 +23,7 @@ namespace App5
         public bool bStatusChangeFlag = false;
         public string m_CurrentTopicType;
         public Topic m_CurrentTopic;
+        public Item m_EditItem;
         public ListView()
         {
             InitializeComponent();
@@ -40,6 +41,7 @@ namespace App5
             dgItemsLists.ItemsSource = m_ListEngine.itemscollection;
             dgItemsLists.SelectionChanged += ItemDataGrid_SelectionChanged;
             dgItemsLists.CurrentCellActivating += ItemDataGrid_CurrentCellActivating;
+            dgItemsLists.CurrentCellEndEdit += ItemDataGrid_CurrentCellBeginEdit;
             dgItemsLists.CurrentCellEndEdit += ItemDataGrid_CurrentCellEndEdit;
             dgItemsLists.ValueChanged += ItemDataGrid_ValueChanged;
             dgItemsLists.AllowEditing = true;
@@ -179,8 +181,11 @@ namespace App5
                 await App.Current.MainPage.DisplayAlert("ItemDataGrid_ValueChanged", exception.Message, "ok");
             }
         }
-
-        private async void ItemDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
+        private void ItemDataGrid_CurrentCellBeginEdit(object sender, GridCurrentCellEndEditEventArgs e)
+        {
+            m_EditItem = (Item)dgItemsLists.SelectedItem;
+        }
+         private async void ItemDataGrid_CurrentCellEndEdit(object sender, GridCurrentCellEndEditEventArgs e)
         {
             try
             {
@@ -189,11 +194,10 @@ namespace App5
                 var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
                 var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
                 await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
-                //Item selItem1 = (Item)dgItemsLists.
-                //Item selItem = (Item)e.RowData;
+
                 if (mappingName == "ItemText" )
                 {
-                    Item selItem = (Item)dgItemsLists.SelectedItem;
+                    Item selItem = (Item)m_EditItem;
                     if (selItem != null)
                     {
                         await App.Current.MainPage.DisplayAlert("ItemText", selItem.ItemText, "ok");
@@ -248,7 +252,8 @@ namespace App5
             //to set the found row as current row 
             dgTopicsLists.View.MoveCurrentTo(newtopic);
             dgTopicsLists.SelectedIndex = rowindex;
-
+            m_CurrentTopic = newtopic;
+            m_ListEngine.GetItemsList(m_CurrentTopic);
 
         }
         private void BtnSpeak_Clicked(object sender, EventArgs e)
