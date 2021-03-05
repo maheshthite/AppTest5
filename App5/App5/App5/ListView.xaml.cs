@@ -47,7 +47,8 @@ namespace App5
             dgItemsLists.CurrentCellBeginEdit += ItemDataGrid_CurrentCellBeginEdit;
             dgItemsLists.CurrentCellEndEdit += ItemDataGrid_CurrentCellEndEdit;
             dgItemsLists.ValueChanged += ItemDataGrid_ValueChanged;
-            dgItemsLists.AllowEditing = true;
+             dgItemsLists.AllowEditing = true;
+
         }
         public void SetParentMainPage(MainPage mParent)
         {
@@ -182,11 +183,11 @@ namespace App5
                 var columnIndex = dgTopicsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
                 var mappingName = dgTopicsLists.Columns[columnIndex].MappingName;
                 //await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
-
-                if (mappingName == "TopicName" && m_EditTopic !=null)
+                Topic selItem = (Topic)dgTopicsLists.GetRecordAtRowIndex(recordIndex);
+                if (mappingName == "TopicName" && selItem != null)
                 {
-                    Topic selItem = (Topic)m_EditTopic;
-                    if (selItem != null)
+                    //Topic selItem = (Topic)m_EditTopic;
+                    //if (selItem != null)
                     {
                         //await App.Current.MainPage.DisplayAlert("TopicName", selItem.TopicName, "ok");
                         m_ListEngine.UpdateTopic(selItem);
@@ -213,11 +214,11 @@ namespace App5
                 var columnIndex = dgItemsLists.ResolveToGridVisibleColumnIndex(e.RowColumnIndex.ColumnIndex);
                 var mappingName = dgItemsLists.Columns[columnIndex].MappingName;
                 //await App.Current.MainPage.DisplayAlert(mappingName, "mappingName", "ok");
-
-                if (mappingName == "ItemText" && m_EditItem != null)
+                Item selItem = (Item)dgItemsLists.GetRecordAtRowIndex(recordIndex);
+                if (mappingName == "ItemText" && selItem != null)
                 {
-                    Item selItem = (Item)m_EditItem;
-                    if (selItem != null)
+                    //Item selItem = (Item)m_EditItem;
+                    //if (selItem != null)
                     {
                         //await App.Current.MainPage.DisplayAlert("ItemText", selItem.ItemText, "ok");
                         m_ListEngine.UpdateItem(selItem);
